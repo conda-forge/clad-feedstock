@@ -6,13 +6,6 @@ cmake -G "Ninja" ^
       -DCMAKE_BUILD_TYPE=Release ^
       -DCLAD_BUILD_STATIC_ONLY=ON ^
       %SRC_DIR%/source
-
-echo CMakeFiles\CMakeOutput.log
-type CMakeFiles\CMakeOutput.log
-
-echo CMakeFiles\CMakeError.log
-type CMakeFiles\CMakeError.log
-
 if errorlevel 1 exit 1
 
 ninja -j%CPU_COUNT%
