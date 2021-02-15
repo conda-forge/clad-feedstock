@@ -11,7 +11,6 @@ source:
   folder: source
 
 build:
-  skip: true  # [win]
   number: 0
 
 requirements:
@@ -29,7 +28,11 @@ requirements:
 test:
   commands:
     - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
-    - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
+    - test -f $PREFIX/lib/libcladDifferentiator.a  # [unix]
+    - test -f $PREFIX/lib/libcladPlugin.a  # [unix]
+    # - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\cladDifferentiator.lib exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\\cladPlugin.lib exit 1  # [win]
 
 about:
   home: https://github.com/vgvassilev/clad

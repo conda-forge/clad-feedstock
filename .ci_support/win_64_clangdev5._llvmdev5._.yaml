@@ -1,0 +1,15 @@
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
+clangdev:
+- 5.*
+cxx_compiler:
+- vs2017
+llvmdev:
+- 5.*
+target_platform:
+- win-64
+zip_keys:
+- - llvmdev
+  - clangdev

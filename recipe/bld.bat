@@ -4,9 +4,8 @@ cd build
 cmake -G "Ninja" ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -DCMAKE_BUILD_TYPE=Release ^
+      -DCLAD_BUILD_STATIC_ONLY=ON ^
       %SRC_DIR%/source
-dir
-type CMakeFiles\CMakeOutput.log
 if errorlevel 1 exit 1
 
 ninja -j%CPU_COUNT%
