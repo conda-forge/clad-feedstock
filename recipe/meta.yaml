@@ -1,5 +1,6 @@
 {% set name = "clad" %}
 {% set version = "0.9" %}
+{% set build_number = 1 %}
 
 package:
   name: {{ name|lower }}
@@ -11,7 +12,7 @@ source:
   folder: source
 
 build:
-  number: 0
+  string: clang{{ (clangdev or "None").split(".")[0] }}_h{{ PKG_HASH }}_{{ build_number }}
 
 requirements:
   build:
@@ -24,6 +25,9 @@ requirements:
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev
+  run_constrained:
+    - cling ==9999999999  # [clangdev != "5.*"]
+    - cling 0.8           # [clangdev == "5.*"]
 
 test:
   commands:
