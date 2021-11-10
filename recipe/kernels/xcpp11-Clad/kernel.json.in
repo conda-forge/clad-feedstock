@@ -1,0 +1,11 @@
+{
+  "display_name": "C++11-Clad”,
+  "argv": [
+      "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_BINDIR@/xcpp",
+      "-f",
+      "{connection_file}",
+      "-fplugin=$CONDA_PREFIX/lib/clad.dylib",
+      "-std=c++11"
+  ],
+  "language": "C++11"
+}

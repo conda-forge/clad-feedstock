@@ -10,7 +10,9 @@ make -j${CPU_COUNT}
 make install
 
 if [[ ${clangdev} == '5.*' ]]; then
-    echo "Making xeus-cling based jupyter kernels"
+    echo "Making xeus-cling based Jupyter kernels"
+    mkdir -p $CONDA_PREFIX/share/jupyter/kernels/
+    cp -r $RECIPE_DIR/kernels/* $CONDA_PREFIX/share/jupyter/kernels/
 else
-    echo "Not making jupyter kernels"
+    echo "Not making Jupyter kernels"
 fi
