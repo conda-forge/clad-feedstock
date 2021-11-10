@@ -33,6 +33,7 @@ requirements:
 test:
   requires:                # [clangdev == "5.*"]
     - jupyter_kernel_test  # [clangdev == "5.*"]
+    - xeus-cling           # [clangdev == "5.*"]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
