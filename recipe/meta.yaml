@@ -12,6 +12,7 @@ source:
   folder: source
 
 build:
+  number: {{ build_number }}
   string: clang{{ (clangdev or "None").split(".")[0] }}_h{{ PKG_HASH }}_{{ build_number }}
 
 requirements:
