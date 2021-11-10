@@ -1,11 +1,11 @@
 {
-  "display_name": "C++17-Clad”,
+  "display_name": "C++17-Clad",
   "argv": [
-      "@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_BINDIR@/xcpp",
-      "-f",
-      "{connection_file}",
-      "-fplugin=$CONDA_PREFIX/lib/clad.dylib",
-      "-std=c++17"
+    "@PREFIX@/xcpp",
+    "-f",
+    "{connection_file}",
+    "-fplugin=@PREFIX@/lib/clad@SHLIB_EXT@",
+    "-std=c++17"
   ],
   "language": "C++17"
 }
