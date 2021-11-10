@@ -31,7 +31,10 @@ requirements:
     - cling 0.8           # [clangdev == "5.*"]
 
 test:
+  requires:                # [clangdev == "5.*"]
+    - jupyter_kernel_test  # [clangdev == "5.*"]
   commands:
+    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py
     - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
     - test -f $PREFIX/lib/libcladDifferentiator.a  # [unix]
     - test -f $PREFIX/lib/libcladPlugin.a  # [unix]
