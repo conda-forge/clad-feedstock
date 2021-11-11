@@ -16,7 +16,7 @@ class CladXCppTests(jupyter_kernel_test.KernelTests):
     code_execute_result = [
         {
             'code': '#include "clad/Differentiator/Differentiator.h"\ndouble f(double x) {return x*x;};\nauto f_g = clad::differentiate(f);\nf_g.execute(2)',
-            'result': '34.0000000'
+            'result': '4.0000000'
         }
     ]
 
