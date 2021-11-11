@@ -32,9 +32,9 @@ requirements:
     - cling 0.8           # [clangdev == "5.*"]
 
 test:
-  requires:                # [clangdev == "5.*"]
-    - jupyter_kernel_test  # [clangdev == "5.*"]
-    - xeus-cling           # [clangdev == "5.*"]
+  requires:                # [clangdev == "5.*" and not win]
+    - jupyter_kernel_test  # [clangdev == "5.*" and not win]
+    - xeus-cling           # [clangdev == "5.*" and not win]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
