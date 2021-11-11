@@ -3,11 +3,11 @@ channel_sources:
 channel_targets:
 - conda-forge main
 clangdev:
-- 8.*
+- 12.*
 cxx_compiler:
 - vs2017
 llvmdev:
-- 8.*
+- 12.*
 target_platform:
 - win-64
 zip_keys:

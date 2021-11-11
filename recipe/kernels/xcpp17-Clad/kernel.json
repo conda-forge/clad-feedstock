@@ -1,0 +1,11 @@
+{
+  "display_name": "C++17-Clad",
+  "argv": [
+    "@PREFIX@/bin/xcpp",
+    "-f",
+    "{connection_file}",
+    "-fplugin=@PREFIX@/lib/clad@SHLIB_EXT@",
+    "-std=c++17"
+  ],
+  "language": "C++17"
+}
