@@ -303,6 +303,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@ioanaif](https://github.com/ioanaif/)
 * [@oshadura](https://github.com/oshadura/)
 * [@vgvassilev](https://github.com/vgvassilev/)
 
