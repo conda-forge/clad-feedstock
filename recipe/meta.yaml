@@ -1,6 +1,6 @@
 {% set name = "clad" %}
-{% set version = "0.9" %}
-{% set build_number = 1 %}
+{% set version = "1.0" %}
+{% set build_number = 0 %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 0876cd1d00eb222f39b34b1db3dc5f9b873b7a26af01e98bf5fb1950670583d2
+  sha256: 9c754bce4d9a1feb3b7e93bd8dc6b747f546b522e7889652ca035ec503f6e12e
   folder: source
 
 build:
@@ -32,7 +32,7 @@ requirements:
     - cling 0.8           # [clangdev == "5.*"]
 
 test:
-  requires:                # [clangdev == "5.*" and not win]
+  requires:   # [clangdev == "5.*" and not win]
     - jupyter_kernel_test  # [clangdev == "5.*" and not win]
     - xeus-cling           # [clangdev == "5.*" and not win]
   files:
