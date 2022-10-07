@@ -5,7 +5,7 @@ channel_targets:
 clangdev:
 - 9.*
 cxx_compiler:
-- vs2017
+- vs2019
 llvmdev:
 - 9.*
 target_platform:
