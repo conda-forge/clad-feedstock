@@ -9,7 +9,7 @@ clangdev:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '14'
+- '12'
 llvmdev:
 - 5.*
 macos_machine:
