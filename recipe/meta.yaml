@@ -35,6 +35,7 @@ test:
   requires:   # [clangdev == "5.*" and not win]
     - jupyter_kernel_test  # [clangdev == "5.*" and not win]
     - xeus-cling=0.12.0          # [clangdev == "5.*" and not win]
+    - libcxx=12.0.1                  # [clangdev == "5.*" and not win]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
