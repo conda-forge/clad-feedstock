@@ -36,6 +36,7 @@ test:
     - jupyter_kernel_test  # [clangdev == "5.*" and not win]
     - xeus-cling          # [clangdev == "5.*" and not win]
     - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
+    - libgcc-ng<=9.3.0       # [clangdev == "5.*" and linux]
     - gcc_impl_linux-64=9.3.0      # [clangdev == "5.*" and linux]
     - gcc_linux-64=9.3.0      # [clangdev == "5.*" and linux]
   files:
