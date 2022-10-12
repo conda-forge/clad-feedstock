@@ -34,7 +34,7 @@ requirements:
 test:
   requires:   # [clangdev == "5.*" and not win]
     - jupyter_kernel_test  # [clangdev == "5.*" and not win]
-    - xeus-cling=0.12.0          # [clangdev == "5.*" and not win]
+    - xeus-cling          # [clangdev == "5.*" and not win]
     - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
     - libgcc-devel_linux-aarch64=9.4.0  # [clangdev == "5.*" and linux]
     - libgcc-ng=11.2.0  # [clangdev == "5.*" and linux]
