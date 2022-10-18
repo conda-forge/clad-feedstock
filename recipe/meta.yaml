@@ -1,6 +1,6 @@
 {% set name = "clad" %}
-{% set version = "0.9" %}
-{% set build_number = 1 %}
+{% set version = "1.0" %}
+{% set build_number = 0 %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 0876cd1d00eb222f39b34b1db3dc5f9b873b7a26af01e98bf5fb1950670583d2
+  sha256: 9c754bce4d9a1feb3b7e93bd8dc6b747f546b522e7889652ca035ec503f6e12e
   folder: source
 
 build:
@@ -20,7 +20,9 @@ requirements:
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [not (osx and clangdev == "5.*")]
+    # HACK: This should really be in conda_build_config.yaml but zip_keys makes it hard
+    - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
     - sed    # [unix]
   host:
     # LLVM was split into multiple outputs as part of the 8.x update
@@ -30,11 +32,15 @@ requirements:
   run_constrained:
     - cling ==9999999999  # [clangdev != "5.*"]
     - cling 0.8           # [clangdev == "5.*"]
+    # For C++14/C++17 headers from GCC 9.5.0 cannot be parsed due to a missing commit:
+    # https://github.com/gcc-mirror/gcc/commit/32bbf76e4345a7961445b86a7cfccffa8a287fc1
+    - gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
 
 test:
-  requires:                # [clangdev == "5.*" and not win]
+  requires:   # [clangdev == "5.*" and not win]
     - jupyter_kernel_test  # [clangdev == "5.*" and not win]
-    - xeus-cling           # [clangdev == "5.*" and not win]
+    - xeus-cling          # [clangdev == "5.*" and not win]
+    - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
