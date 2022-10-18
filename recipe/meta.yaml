@@ -20,7 +20,9 @@ requirements:
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [not (osx and clangdev == "5.*")]
+    # HACK: This should really be in conda_build_config.yaml but zip_keys makes it hard
+    - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
     - sed    # [unix]
   host:
     # LLVM was split into multiple outputs as part of the 8.x update
