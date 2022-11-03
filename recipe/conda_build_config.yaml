@@ -9,7 +9,6 @@ llvmdev:
   - 12.*
   - 13.*
   - 14.*
-  - 15.*
 clangdev:
   - 5.*
   - 6.*
@@ -21,7 +20,6 @@ clangdev:
   - 12.*
   - 13.*
   - 14.*
-  - 15.*
 zip_keys:
   -
     - llvmdev
