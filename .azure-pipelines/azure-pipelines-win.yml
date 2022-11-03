@@ -17,6 +17,12 @@ jobs:
       win_64_clangdev12._llvmdev12._:
         CONFIG: win_64_clangdev12._llvmdev12._
         UPLOAD_PACKAGES: 'True'
+      win_64_clangdev13._llvmdev13._:
+        CONFIG: win_64_clangdev13._llvmdev13._
+        UPLOAD_PACKAGES: 'True'
+      win_64_clangdev14._llvmdev14._:
+        CONFIG: win_64_clangdev14._llvmdev14._
+        UPLOAD_PACKAGES: 'True'
       win_64_clangdev5._llvmdev5._:
         CONFIG: win_64_clangdev5._llvmdev5._
         UPLOAD_PACKAGES: 'True'
@@ -56,7 +62,7 @@ jobs:
 
     - script: |
         call activate base
-        mamba.exe install 'python=3.9' conda-build conda pip boa 'conda-forge-ci-setup=3' -c conda-forge --strict-channel-priority --yes
+        mamba.exe install "python=3.9" conda-build conda pip boa conda-forge-ci-setup=3 "py-lief<0.12" -c conda-forge --strict-channel-priority --yes
       displayName: Install conda-build
 
     - script: set PYTHONUNBUFFERED=1
