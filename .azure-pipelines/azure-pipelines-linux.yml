@@ -28,10 +28,6 @@ jobs:
         CONFIG: linux_64_clangdev14._llvmdev14._
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_clangdev15._llvmdev15._:
-        CONFIG: linux_64_clangdev15._llvmdev15._
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_clangdev5._llvmdev5._:
         CONFIG: linux_64_clangdev5._llvmdev5._
         UPLOAD_PACKAGES: 'True'
