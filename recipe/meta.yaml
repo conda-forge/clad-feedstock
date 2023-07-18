@@ -1,5 +1,5 @@
 {% set name = "clad" %}
-{% set version = "1.0" %}
+{% set version = "1.2" %}
 {% set build_number = 0 %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 9c754bce4d9a1feb3b7e93bd8dc6b747f546b522e7889652ca035ec503f6e12e
+  sha256: 35dd72349553acfe7cd66938bdd097cf86c6dc3ac71b1379ec6d0908a4fae08f
   folder: source
 
 build:
