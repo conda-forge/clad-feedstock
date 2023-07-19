@@ -8,6 +8,15 @@ jobs:
     vmImage: windows-2022
   strategy:
     matrix:
+      win_64_clangdev7._llvmdev7._:
+        CONFIG: win_64_clangdev7._llvmdev7._
+        UPLOAD_PACKAGES: 'True'
+      win_64_clangdev8._llvmdev8._:
+        CONFIG: win_64_clangdev8._llvmdev8._
+        UPLOAD_PACKAGES: 'True'
+      win_64_clangdev9._llvmdev9._:
+        CONFIG: win_64_clangdev9._llvmdev9._
+        UPLOAD_PACKAGES: 'True'
       win_64_clangdev10._llvmdev10._:
         CONFIG: win_64_clangdev10._llvmdev10._
         UPLOAD_PACKAGES: 'True'
@@ -23,21 +32,7 @@ jobs:
       win_64_clangdev14._llvmdev14._:
         CONFIG: win_64_clangdev14._llvmdev14._
         UPLOAD_PACKAGES: 'True'
-      win_64_clangdev5._llvmdev5._:
-        CONFIG: win_64_clangdev5._llvmdev5._
-        UPLOAD_PACKAGES: 'True'
-      win_64_clangdev6._llvmdev6._:
-        CONFIG: win_64_clangdev6._llvmdev6._
-        UPLOAD_PACKAGES: 'True'
-      win_64_clangdev7._llvmdev7._:
-        CONFIG: win_64_clangdev7._llvmdev7._
-        UPLOAD_PACKAGES: 'True'
-      win_64_clangdev8._llvmdev8._:
-        CONFIG: win_64_clangdev8._llvmdev8._
-        UPLOAD_PACKAGES: 'True'
-      win_64_clangdev9._llvmdev9._:
-        CONFIG: win_64_clangdev9._llvmdev9._
-        UPLOAD_PACKAGES: 'True'
+
   timeoutInMinutes: 360
   variables:
     CONDA_BLD_PATH: D:\\bld\\

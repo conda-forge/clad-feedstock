@@ -8,6 +8,15 @@ jobs:
     vmImage: macOS-11
   strategy:
     matrix:
+       osx_64_clangdev7._llvmdev7._:
+        CONFIG: osx_64_clangdev7._llvmdev7._
+        UPLOAD_PACKAGES: 'True'
+      osx_64_clangdev8._llvmdev8._:
+        CONFIG: osx_64_clangdev8._llvmdev8._
+        UPLOAD_PACKAGES: 'True'
+      osx_64_clangdev9._llvmdev9._:
+        CONFIG: osx_64_clangdev9._llvmdev9._
+        UPLOAD_PACKAGES: 'True'
       osx_64_clangdev10._llvmdev10._:
         CONFIG: osx_64_clangdev10._llvmdev10._
         UPLOAD_PACKAGES: 'True'
@@ -23,21 +32,7 @@ jobs:
       osx_64_clangdev14._llvmdev14._:
         CONFIG: osx_64_clangdev14._llvmdev14._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev5._llvmdev5._:
-        CONFIG: osx_64_clangdev5._llvmdev5._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev6._llvmdev6._:
-        CONFIG: osx_64_clangdev6._llvmdev6._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev7._llvmdev7._:
-        CONFIG: osx_64_clangdev7._llvmdev7._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev8._llvmdev8._:
-        CONFIG: osx_64_clangdev8._llvmdev8._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev9._llvmdev9._:
-        CONFIG: osx_64_clangdev9._llvmdev9._
-        UPLOAD_PACKAGES: 'True'
+
   timeoutInMinutes: 360
 
   steps:
