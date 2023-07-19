@@ -8,18 +8,6 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_clangdev7._llvmdev7._:
-        CONFIG: linux_64_clangdev7._llvmdev7._
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_clangdev8._llvmdev8._:
-        CONFIG: linux_64_clangdev8._llvmdev8._
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_clangdev9._llvmdev9._:
-        CONFIG: linux_64_clangdev9._llvmdev9._
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_clangdev10._llvmdev10._:
         CONFIG: linux_64_clangdev10._llvmdev10._
         UPLOAD_PACKAGES: 'True'
@@ -38,6 +26,18 @@ jobs:
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_clangdev14._llvmdev14._:
         CONFIG: linux_64_clangdev14._llvmdev14._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_clangdev7._llvmdev7._:
+        CONFIG: linux_64_clangdev7._llvmdev7._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_clangdev8._llvmdev8._:
+        CONFIG: linux_64_clangdev8._llvmdev8._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_clangdev9._llvmdev9._:
+        CONFIG: linux_64_clangdev9._llvmdev9._
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360

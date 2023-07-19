@@ -29,6 +29,7 @@ requirements:
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev
+  
   run_constrained:
     - cling ==9999999999  # [clangdev != "5.*"]
     - cling 0.8           # [clangdev == "5.*"]
@@ -37,15 +38,14 @@ requirements:
     - gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
 
 test:
-  # uncomment these when xeus-cling upgrades to 9.
-  # requires:   # [clangdev == "5.*" and not win]
-    # - jupyter_kernel_test  # [clangdev == "5.*" and not win]
-    # - xeus-cling          # [clangdev == "5.*" and not win]
-    # - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
-  # files:
-  #   - $RECIPE_DIR/jupyter_Clad_kernel_test.py
+  requires:   # [clangdev == "5.*" and not win]
+    - jupyter_kernel_test  # [clangdev == "5.*" and not win]
+    - xeus-cling          # [clangdev == "5.*" and not win]
+    - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
+  files:
+    - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
-    # - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "5.*" and not win]
+    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "5.*" and not win]
     - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
     - test -f $PREFIX/lib/libcladDifferentiator.a  # [unix]
     - test -f $PREFIX/lib/libcladPlugin.a  # [unix]
