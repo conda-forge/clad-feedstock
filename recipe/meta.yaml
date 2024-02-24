@@ -22,26 +22,25 @@ requirements:
     - ninja  # [win]
     - {{ compiler('cxx') }}  # [not (osx and clangdev == "5.*")]
     # HACK: This should really be in conda_build_config.yaml but zip_keys makes it hard
-    - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
+    # - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
     - sed    # [unix]
-  host:
-    # LLVM was split into multiple outputs as part of the 8.x update
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev
-
+    #host:
+    # LLVM was split into multiple outputs as part of the 8.x update
   run_constrained:
-    - cling ==9999999999  # [clangdev != "5.*"]
-    - cling 0.8           # [clangdev == "5.*"]
+    - cling ==9999999999  # [clangdev != "13.*"]
+    - cling 1.0           # [clangdev == "13.*"]
     # For C++14/C++17 headers from GCC 9.5.0 cannot be parsed due to a missing commit:
     # https://github.com/gcc-mirror/gcc/commit/32bbf76e4345a7961445b86a7cfccffa8a287fc1
-    - gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
+    #- gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
 
 test:
-  requires:   # [clangdev == "5.*" and not win]
-    - jupyter_kernel_test  # [clangdev == "5.*" and not win]
-    - xeus-cling          # [clangdev == "5.*" and not win]
-    - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
+  requires:   # [clangdev == "13.*" and not win]
+    - jupyter_kernel_test  # [clangdev == "13.*" and not win]
+    - xeus-cling          # [clangdev == "13.*" and not win]
+    #- libcxx=12.0.1                  # [clangdev == "5.*" and osx]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
@@ -67,6 +66,6 @@ about:
 
 extra:
   recipe-maintainers:
-    - alexander-penev
     - vgvassilev
+    - alexander-penev
     - oshadura
