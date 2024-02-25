@@ -29,6 +29,8 @@ requirements:
     - clangdev
     #host:
     # LLVM was split into multiple outputs as part of the 8.x update
+  run:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
     - cling ==9999999999  # [clangdev != "13.*"]
     - cling 0.9           # [clangdev == "13.*"]
