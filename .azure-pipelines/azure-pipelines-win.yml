@@ -23,6 +23,15 @@ jobs:
       win_64_clangdev14._llvmdev14._:
         CONFIG: win_64_clangdev14._llvmdev14._
         UPLOAD_PACKAGES: 'True'
+      win_64_clangdev15._llvmdev15._:
+        CONFIG: win_64_clangdev15._llvmdev15._
+        UPLOAD_PACKAGES: 'True'
+      win_64_clangdev16._llvmdev16._:
+        CONFIG: win_64_clangdev16._llvmdev16._
+        UPLOAD_PACKAGES: 'True'
+      win_64_clangdev17._llvmdev17._:
+        CONFIG: win_64_clangdev17._llvmdev17._
+        UPLOAD_PACKAGES: 'True'
       win_64_clangdev7._llvmdev7._:
         CONFIG: win_64_clangdev7._llvmdev7._
         UPLOAD_PACKAGES: 'True'
