@@ -24,11 +24,13 @@ requirements:
     # HACK: This should really be in conda_build_config.yaml but zip_keys makes it hard
     # - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
     - sed    # [unix]
+    # LLVM was split into multiple outputs as part of the 8.x update
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev
-    #host:
-    # LLVM was split into multiple outputs as part of the 8.x update
+  host:
+    - xz
+    - zstd
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
