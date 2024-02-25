@@ -3,11 +3,7 @@
 mkdir build
 cd build
 
-if [ "$(uname)" == "Darwin" ]; then
-  export
-  ls -la /opt
-  export CONDA_BUILD_SYSROOT=/opt/MacOSX13.4.0.sdk
-else
+if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
 fi
 
