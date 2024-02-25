@@ -3,8 +3,13 @@
 mkdir build
 cd build
 
-export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-#echo "#include <vector>" | clang++ --gcc-toolchain=$CONDA_PREFIX -xc++ - -v
+if [ "$(uname)" == "Darwin" ]; then
+  export
+  ls -la /opt
+  export CONDA_BUILD_SYSROOT=/opt/MacOSX13.4.0.sdk
+else
+  export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+fi
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
