@@ -9,6 +9,8 @@ package:
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: 8a2dddef4339639e0e9cbe9ec89a0a2c57e98380e8c1072475d7f1a3551fba3a
+  patches:
+    - patches/clad-git-only-on-benchmark.patch
   folder: source
 
 build:
