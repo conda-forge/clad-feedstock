@@ -11,6 +11,7 @@ fi
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+      -DCMAKE_CXX_STANDARD=11 \
       $SRC_DIR/source
 
 make VERBOSE=1
