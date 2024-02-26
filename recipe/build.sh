@@ -1,13 +1,12 @@
 #!/bin/bash
 
+set -x
+
 mkdir build
 cd build
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  echo "Linux!!!"
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-else
-  echo "Mac or Win!!!"
 fi
 
 cmake ${CMAKE_ARGS} \
