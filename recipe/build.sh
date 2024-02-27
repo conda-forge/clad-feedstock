@@ -5,17 +5,15 @@ set -x
 mkdir build
 cd build
 
+echo | gcc -E -Wp,-v - 2>&1 | grep " /.*"
+
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
 fi
-
-export
-
-export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
-      -DCMAKE_CXX_STANDARD=14 \
       $SRC_DIR/source
 
 make VERBOSE=1
