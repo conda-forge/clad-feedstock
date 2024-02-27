@@ -5,7 +5,7 @@ set -x
 mkdir build
 cd build
 
-echo | $GCC -E -Wp,-v - 2>&1 | grep " /.*"
+echo | $CXX -E -Wp,-v - 2>&1 | grep " /.*"
 
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
