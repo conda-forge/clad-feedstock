@@ -12,7 +12,7 @@ if [[ "$(uname)" == "Linux"* ]]; then
   export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
 fi
 
-if [[ "${uname}" == "Darwin"* ]]; then
+if [[ "$(uname)" == "Darwin"* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
