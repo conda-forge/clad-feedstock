@@ -12,9 +12,6 @@ if [[ "$(uname)" == "Linux"* ]]; then
   export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
   export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/gcc/$HOST/12.3.0
 
-  find $CONDA_PREFIX/ | grep "crtbeginS"
-  find $PREFIX/ | grep "crtbeginS"
-
   # FIXME: Only do this for clang7 and clang8
   GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
   GCCLIBDIR=$BUILD_PREFIX/lib/gcc/$HOST/$GCCVERSION
@@ -44,3 +41,5 @@ if [[ ${clangdev} == '13.*' ]]; then
 else
     echo "Not making Jupyter kernels"
 fi
+
+exit 0
