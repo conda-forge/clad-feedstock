@@ -1,35 +1,32 @@
 #!/bin/bash
 
-set -e -x
+set -x
 
 mkdir build
 cd build
 
-echo | $CXX -E -Wp,-v - 2>&1 | grep " /.*"
-
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
-  export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/gcc/$HOST/12.3.0
+  #export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
+  #export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/gcc/$HOST/12.3.0
 
-  # FIXME: Only do this for clang7 and clang8
-  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-  GCCLIBDIR=$BUILD_PREFIX/lib/gcc/$HOST/$GCCVERSION
-  # resolves `cannot find -lgcc`:
-  export LDFLAGS="$LDFLAGS -Wl,-L$GCCLIBDIR"
+  ## FIXME: Only do this for clang7 and clang8
+  #GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+  #GCCLIBDIR=$BUILD_PREFIX/lib/gcc/$HOST/$GCCVERSION
+  ## resolves `cannot find -lgcc`:
+  #export LDFLAGS="$LDFLAGS -Wl,-L$GCCLIBDIR"
 fi
 
-if [[ "$(uname)" == "Darwin"* ]]; then
-  # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
-  CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
-fi
+#if [[ "$(uname)" == "Darwin"* ]]; then
+#  # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
+#  CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+#fi
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
       $SRC_DIR/source
 
-make VERBOSE=1
-#make -j${CPU_COUNT}
+make -j${CPU_COUNT}
 make install
 
 if [[ ${clangdev} == '13.*' ]]; then
@@ -41,5 +38,3 @@ if [[ ${clangdev} == '13.*' ]]; then
 else
     echo "Not making Jupyter kernels"
 fi
-
-exit 0
