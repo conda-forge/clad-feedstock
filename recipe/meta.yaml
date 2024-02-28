@@ -15,8 +15,8 @@ source:
 
 build:
   skip: True  # [win]
-  skip: True  # [linux && (clangdev in ["7.*", "8.*"])]
-  skip: True  # [osx && (clangdev in ["7.*", "8.*", "9.*", "10.*", "11.*", "12.*"])]
+  skip: True  # [linux && clangdev in ("7.*", "8.*")]
+  skip: True  # [osx && clangdev in ("7.*", "8.*", "9.*", "10.*", "11.*", "12.*")]
   number: {{ build_number }}
   string: clang{{ (clangdev or "None").split(".")[0] }}_h{{ PKG_HASH }}_{{ build_number }}
 
