@@ -7,20 +7,14 @@ cd build
 
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-  #export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
-  #export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/gcc/$HOST/12.3.0
-
-  ## FIXME: Only do this for clang7 and clang8
-  #GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-  #GCCLIBDIR=$BUILD_PREFIX/lib/gcc/$HOST/$GCCVERSION
-  ## resolves `cannot find -lgcc`:
-  #export LDFLAGS="$LDFLAGS -Wl,-L$GCCLIBDIR"
+  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
 fi
 
-#if [[ "$(uname)" == "Darwin"* ]]; then
-#  # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
-#  CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
-#fi
+if [[ "$(uname)" == "Darwin"* ]]; then
+  # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
+  CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+fi
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
