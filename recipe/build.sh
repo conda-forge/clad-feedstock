@@ -10,6 +10,7 @@ echo | $CXX -E -Wp,-v - 2>&1 | grep " /.*"
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
   export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
+  export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/gcc/$HOST/12.3.0
 
   # FIXME: Only do this for clang7 and clang8
   GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
