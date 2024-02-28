@@ -1,21 +1,27 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
+MACOSX_SDK_VERSION:
+- '10.12'
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 clangdev:
-- 12.*
+- 16.*
 cxx_compiler:
-- clangxx
+- clang_bootstrap
 cxx_compiler_version:
-- '15'
+- '16'
 llvmdev:
-- 12.*
+- 16.*
 macos_machine:
 - x86_64-apple-darwin13.4.0
 target_platform:
 - osx-64
+xz:
+- '5'
 zip_keys:
 - - llvmdev
   - clangdev
+zstd:
+- '1.5'

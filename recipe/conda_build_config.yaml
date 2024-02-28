@@ -1,5 +1,5 @@
 llvmdev:
-  - 7.*
+#  - 7.*
   - 8.*
   - 9.*
   - 10.*
@@ -7,8 +7,11 @@ llvmdev:
   - 12.*
   - 13.*
   - 14.*
+  - 15.*
+  - 16.*
+  - 17.*
 clangdev:
-  - 7.*
+#  - 7.*
   - 8.*
   - 9.*
   - 10.*
@@ -16,7 +19,18 @@ clangdev:
   - 12.*
   - 13.*
   - 14.*
+  - 15.*
+  - 16.*
+  - 17.*
 zip_keys:
   -
     - llvmdev
     - clangdev
+
+c_compiler:          # [osx]
+  - clang_bootstrap  # [osx]
+cxx_compiler:        # [osx]
+  - clang_bootstrap  # [osx]
+
+MACOSX_SDK_VERSION:  # [osx and x86_64]
+  - 10.12            # [osx and x86_64]

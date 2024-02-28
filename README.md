@@ -70,31 +70,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_clangdev5._llvmdev5.</td>
+              <td>linux_64_clangdev15._llvmdev15.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev5._llvmdev5._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev15._llvmdev15._" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_clangdev6._llvmdev6.</td>
+              <td>linux_64_clangdev16._llvmdev16.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev6._llvmdev6._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev16._llvmdev16._" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_clangdev7._llvmdev7.</td>
+              <td>linux_64_clangdev17._llvmdev17.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev7._llvmdev7._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_clangdev8._llvmdev8.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev8._llvmdev8._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev17._llvmdev17._" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -102,27 +95,6 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_clangdev9._llvmdev9._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_clangdev10._llvmdev10.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev10._llvmdev10._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_clangdev11._llvmdev11.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev11._llvmdev11._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_clangdev12._llvmdev12.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev12._llvmdev12._" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -140,108 +112,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_clangdev5._llvmdev5.</td>
+              <td>osx_64_clangdev15._llvmdev15.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev5._llvmdev5._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev15._llvmdev15._" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_clangdev6._llvmdev6.</td>
+              <td>osx_64_clangdev16._llvmdev16.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev6._llvmdev6._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev16._llvmdev16._" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_clangdev7._llvmdev7.</td>
+              <td>osx_64_clangdev17._llvmdev17.</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev7._llvmdev7._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_clangdev8._llvmdev8.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev8._llvmdev8._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_clangdev9._llvmdev9.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev9._llvmdev9._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev10._llvmdev10.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev10._llvmdev10._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev11._llvmdev11.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev11._llvmdev11._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev12._llvmdev12.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev12._llvmdev12._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev13._llvmdev13.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev13._llvmdev13._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev14._llvmdev14.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev14._llvmdev14._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev5._llvmdev5.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev5._llvmdev5._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev6._llvmdev6.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev6._llvmdev6._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev7._llvmdev7.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev7._llvmdev7._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev8._llvmdev8.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev8._llvmdev8._" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_clangdev9._llvmdev9.</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=11869&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=win&configuration=win%20win_64_clangdev9._llvmdev9._" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/clad-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_clangdev17._llvmdev17._" alt="variant">
                 </a>
               </td>
             </tr>
@@ -325,7 +213,7 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
 To manage the continuous integration and simplify feedstock maintenance
@@ -373,7 +261,7 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
-* [@ioanaif](https://github.com/ioanaif/)
+* [@alexander-penev](https://github.com/alexander-penev/)
 * [@oshadura](https://github.com/oshadura/)
 * [@vgvassilev](https://github.com/vgvassilev/)
 

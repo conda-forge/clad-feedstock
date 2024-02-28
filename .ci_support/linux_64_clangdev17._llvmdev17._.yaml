@@ -5,7 +5,7 @@ channel_sources:
 channel_targets:
 - conda-forge main
 clangdev:
-- 8.*
+- 17.*
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -13,9 +13,13 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 llvmdev:
-- 8.*
+- 17.*
 target_platform:
 - linux-64
+xz:
+- '5'
 zip_keys:
 - - llvmdev
   - clangdev
+zstd:
+- '1.5'

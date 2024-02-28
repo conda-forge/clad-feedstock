@@ -8,29 +8,20 @@ jobs:
     vmImage: macOS-11
   strategy:
     matrix:
-      osx_64_clangdev10._llvmdev10._:
-        CONFIG: osx_64_clangdev10._llvmdev10._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev11._llvmdev11._:
-        CONFIG: osx_64_clangdev11._llvmdev11._
-        UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev12._llvmdev12._:
-        CONFIG: osx_64_clangdev12._llvmdev12._
-        UPLOAD_PACKAGES: 'True'
       osx_64_clangdev13._llvmdev13._:
         CONFIG: osx_64_clangdev13._llvmdev13._
         UPLOAD_PACKAGES: 'True'
       osx_64_clangdev14._llvmdev14._:
         CONFIG: osx_64_clangdev14._llvmdev14._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev7._llvmdev7._:
-        CONFIG: osx_64_clangdev7._llvmdev7._
+      osx_64_clangdev15._llvmdev15._:
+        CONFIG: osx_64_clangdev15._llvmdev15._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev8._llvmdev8._:
-        CONFIG: osx_64_clangdev8._llvmdev8._
+      osx_64_clangdev16._llvmdev16._:
+        CONFIG: osx_64_clangdev16._llvmdev16._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev9._llvmdev9._:
-        CONFIG: osx_64_clangdev9._llvmdev9._
+      osx_64_clangdev17._llvmdev17._:
+        CONFIG: osx_64_clangdev17._llvmdev17._
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
 
@@ -38,6 +29,9 @@ jobs:
   # TODO: Fast finish on azure pipelines?
   - script: |
       export CI=azure
+      export flow_run_id=azure_$(Build.BuildNumber).$(System.JobAttempt)
+      export remote_url=$(Build.Repository.Uri)
+      export sha=$(Build.SourceVersion)
       export OSX_FORCE_SDK_DOWNLOAD="1"
       export GIT_BRANCH=$BUILD_SOURCEBRANCHNAME
       export FEEDSTOCK_NAME=$(basename ${BUILD_REPOSITORY_NAME})

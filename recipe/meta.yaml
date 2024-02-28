@@ -1,5 +1,5 @@
 {% set name = "clad" %}
-{% set version = "1.2" %}
+{% set version = "1.3" %}
 {% set build_number = 0 %}
 
 package:
@@ -8,10 +8,15 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 35dd72349553acfe7cd66938bdd097cf86c6dc3ac71b1379ec6d0908a4fae08f
+  sha256: 8a2dddef4339639e0e9cbe9ec89a0a2c57e98380e8c1072475d7f1a3551fba3a
+  patches:
+    - patches/clad-git-only-on-benchmark.patch
   folder: source
 
 build:
+  skip: True  # [win]
+  skip: True  # [linux and (clangdev in ("7.*", "8.*"))]
+  skip: True  # [osx and (clangdev in ("7.*", "8.*", "9.*", "10.*", "11.*", "12.*"))]
   number: {{ build_number }}
   string: clang{{ (clangdev or "None").split(".")[0] }}_h{{ PKG_HASH }}_{{ build_number }}
 
@@ -22,26 +27,30 @@ requirements:
     - ninja  # [win]
     - {{ compiler('cxx') }}  # [not (osx and clangdev == "5.*")]
     # HACK: This should really be in conda_build_config.yaml but zip_keys makes it hard
-    - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
+    # - clangxx_osx-64 12  # [osx and clangdev == "5.*"]
     - sed    # [unix]
-  host:
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev
-  
+    - libcxx {{ cxx_compiler_version }}  # [osx]
+  host:
+    - xz
+    - zstd
+  run:
+    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
-    - cling ==9999999999  # [clangdev != "5.*"]
-    - cling 0.8           # [clangdev == "5.*"]
+    - cling ==9999999999  # [clangdev != "13.*"]
+    - cling 0.9           # [clangdev == "13.*"]
     # For C++14/C++17 headers from GCC 9.5.0 cannot be parsed due to a missing commit:
     # https://github.com/gcc-mirror/gcc/commit/32bbf76e4345a7961445b86a7cfccffa8a287fc1
-    - gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
+    #- gxx_linux-64 !=9.5.0  # [clangdev == "5.*"]
 
 test:
-  requires:   # [clangdev == "5.*" and not win]
-    - jupyter_kernel_test  # [clangdev == "5.*" and not win]
-    - xeus-cling          # [clangdev == "5.*" and not win]
-    - libcxx=12.0.1                  # [clangdev == "5.*" and osx]
+  requires:   # [clangdev == "13.*" and not win]
+    - jupyter_kernel_test  # [clangdev == "13.*" and not win]
+    - xeus-cling          # [clangdev == "13.*" and not win]
+    #- libcxx=12.0.1                  # [clangdev == "5.*" and osx]
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
   commands:
@@ -67,6 +76,6 @@ about:
 
 extra:
   recipe-maintainers:
-    - alexander-penev
     - vgvassilev
+    - alexander-penev
     - oshadura
