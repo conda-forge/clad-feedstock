@@ -23,9 +23,6 @@ jobs:
       osx_64_clangdev17._llvmdev17._:
         CONFIG: osx_64_clangdev17._llvmdev17._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev7._llvmdev7._:
-        CONFIG: osx_64_clangdev7._llvmdev7._
-        UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
 
   steps:
