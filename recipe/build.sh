@@ -10,6 +10,12 @@ echo | $CXX -E -Wp,-v - 2>&1 | grep " /.*"
 if [[ "$(uname)" == "Linux"* ]]; then
   export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
   export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/12.3.0:$CONDA_PREFIX/$HOST/include/c++/12.3.0/$HOST
+
+  # FIXME: Only do this for clang7 and clang8
+  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+  GCCLIBDIR=$BUILD_PREFIX/lib/gcc/$HOST/$GCCVERSION
+  # resolves `cannot find -lgcc`:
+  export LDFLAGS="$LDFLAGS -Wl,-L$GCCLIBDIR"
 fi
 
 if [[ "$(uname)" == "Darwin"* ]]; then
