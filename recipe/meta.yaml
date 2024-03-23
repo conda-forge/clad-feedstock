@@ -42,16 +42,17 @@ requirements:
     - cling 0.9           # [clangdev == "9.*"]
     - clangdev =={{ clang_ver }}
 
-#test:
-#  requires:   # [clangdev == "9.*" and not win]
-#    - jupyter_kernel_test  # [clangdev == "9.*" and not win]
+test:
+  requires:   # [clangdev == "9.*" and not win]
+    - jupyter_kernel_test  # [clangdev == "9.*" and not win]
 #    - xeus-cling           # [clangdev == "9.*" and not win]
 #    - xeus-cpp
-#  files:
-#    - $RECIPE_DIR/jupyter_Clad_kernel_test.py
-#  commands:
+  files:
+    - $RECIPE_DIR/jupyter_Clad_kernel_test.py
+  commands:
 #    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "9.*" and not win]
-#    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
+    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
+    - echo.>NUL  # [win]
 #    # - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
 #    #- if not exist %LIBRARY_LIB%\\cladDifferentiator.lib exit 1  # [win]
 #    #- if not exist %LIBRARY_LIB%\\cladPlugin.lib exit 1  # [win]
