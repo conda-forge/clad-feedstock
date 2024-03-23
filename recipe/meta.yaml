@@ -2,7 +2,7 @@
 {% set version = "1.4" %}
 {% set build_number = 1 %}
 
-{% set clang_ver = clangdev.split(".")[0] %}
+{% set clang_ver = (clangdev or "None").split(".")[0] %}
 
 package:
   name: {{ name|lower }}
@@ -40,7 +40,7 @@ requirements:
   run_constrained:
     - cling ==9999999999  # [clangdev != "13.*"]
     - cling 0.9           # [clangdev == "13.*"]
-    - clangdev =={{ clang_ver  }}
+    - clangdev =={{ clang_ver }}
 
 test:
   requires:   # [clangdev == "13.*" and not win]
