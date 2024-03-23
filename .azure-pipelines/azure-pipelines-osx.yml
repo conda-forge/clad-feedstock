@@ -24,6 +24,7 @@ jobs:
         CONFIG: osx_64_clangdev17._llvmdev17._
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
+  variables: {}
 
   steps:
   # TODO: Fast finish on azure pipelines?
