@@ -5,11 +5,11 @@ set -x
 mkdir build
 cd build
 
-if [[ "$(uname)" == "Linux"* ]]; then
-  export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
-fi
+#if [[ "$(uname)" == "Linux"* ]]; then
+#  export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+#  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+#  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
+#fi
 
 if [[ "$(uname)" == "Darwin"* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
@@ -18,9 +18,13 @@ fi
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+      -DLLVM_EXTERNAL_LIT=`which lit` \
       $SRC_DIR/source
 
 make -j${CPU_COUNT}
+# Make FileCheck findable.
+ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
+make -j${CPU_COUNT} check-clad VERBOSE=1
 make install
 
 echo "Making xeus-cling based Jupyter kernels"

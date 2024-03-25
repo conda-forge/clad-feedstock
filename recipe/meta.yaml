@@ -31,6 +31,8 @@ requirements:
     - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
     - llvmdev
     - clangdev {{ clang_ver }}
+    - llvm-tools # FileCheck
+    - lit
     - libcxx {{ cxx_compiler_version }}  # [osx]
   host:
     - xz
@@ -43,19 +45,22 @@ requirements:
     - clangdev ={{ clang_ver }}
 
 test:
-  requires:   # [clangdev == "9.*" and not win]
+  requires:
+    - lit
+    - llvm-tools # FileCheck
+    - clangdev {{ clang_ver }}
+    - libstdcxx-devel_{{ target_platform }}  # [linux]
+    - libcxx {{ cxx_compiler_version }}  # [osx]
     - jupyter_kernel_test  # [clangdev == "9.*" and not win]
 #    - xeus-cling           # [clangdev == "9.*" and not win]
 #    - xeus-cpp
+
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
-  commands:
-#    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "9.*" and not win]
-    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
-    - echo.>NUL  # [win]
-#    # - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladDifferentiator.lib exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladPlugin.lib exit 1  # [win]
+    - test.cpp
+
+  source_files:
+    - source/test
 
 about:
   home: https://github.com/vgvassilev/clad
