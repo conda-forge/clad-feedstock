@@ -19,6 +19,9 @@ build:
   skip: true  # [win]
   number: {{ build_number }}
   string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}
+  ignore_run_exports_from:
+    - xz      # [unix]
+    - zstd    # [unix]
 
 requirements:
   build:
