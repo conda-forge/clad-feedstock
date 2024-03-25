@@ -1,5 +1,4 @@
 llvmdev:
-#  - 7.*
   - 8.*
   - 9.*
   - 10.*
@@ -11,7 +10,6 @@ llvmdev:
   - 16.*
   - 17.*
 clangdev:
-#  - 7.*
   - 8.*
   - 9.*
   - 10.*
@@ -33,4 +31,4 @@ cxx_compiler:        # [osx]
   - clang_bootstrap  # [osx]
 
 MACOSX_SDK_VERSION:  # [osx and x86_64]
-  - 10.12            # [osx and x86_64]
+  - 10.13            # [osx and x86_64]

@@ -12,26 +12,30 @@ source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: da5584159499b05d77cfca40baee5d4d212beb269637736fee34d84d2b82d419
   folder: source
+  patches:
+    - patches/0001-cmake-EE.patch
 
 build:
   skip: true  # [win]
-  skip: true  # [linux and (clangdev in ("7.*", "8.*"))]
-  skip: true  # [osx and (clangdev in ("7.*", "8.*", "9.*", "10.*", "11.*", "12.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}
 
 requirements:
   build:
+    - git
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [linux]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
-    - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
+    - llvm
     - llvmdev
-    - clangdev {{ clang_ver }}
-    - libcxx {{ cxx_compiler_version }}  # [osx]
+    - clangdev ={{ clang_ver }}
+    - llvm-tools # FileCheck
+    - lit
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*")]
   host:
     - xz
     - zstd
@@ -43,19 +47,28 @@ requirements:
     - clangdev ={{ clang_ver }}
 
 test:
-  requires:   # [clangdev == "9.*" and not win]
-    - jupyter_kernel_test  # [clangdev == "9.*" and not win]
-#    - xeus-cling           # [clangdev == "9.*" and not win]
-#    - xeus-cpp
+  requires:
+    - lit
+    - llvm-tools # FileCheck
+    - clangdev ={{ clang_ver }}
+    - libstdcxx-devel_{{ target_platform }}  # [linux]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*")]
+    - {{ compiler('cxx') }}  # [linux]
+    # LLVM was split into multiple outputs as part of the 8.x update
+    - llvm
+    - llvmdev
+    - jupyter_kernel_test  # [linux and clangdev in ("9.*", "16.*")]
+    #- xeus-cling           # [clangdev == "9.*"]
+    - xeus-cpp  # [linux and clangdev == "16.*"]
+
+
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
-  commands:
-#    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "9.*" and not win]
-    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
-    - echo.>NUL  # [win]
-#    # - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladDifferentiator.lib exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladPlugin.lib exit 1  # [win]
+    - test.cpp
+
+  source_files:
+    - source/test
 
 about:
   home: https://github.com/vgvassilev/clad
