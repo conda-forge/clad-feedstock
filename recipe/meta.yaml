@@ -82,8 +82,8 @@ about:
   description: |
     Clad enables automatic differentiation (AD) for C++. It is based on LLVM
     compiler infrastructure and is a plugin for Clang compiler.
-  doc_url: https://github.com/vgvassilev/clad/blob/master/README.md
-  dev_url: https://github.com/vgvassilev/clad/wiki
+  doc_url: https://clad.readthedocs.io/en/latest/index.html
+  dev_url: https://clad.readthedocs.io/en/latest/user/DevelopersDocumentation.html
 
 extra:
   recipe-maintainers:
