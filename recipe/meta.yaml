@@ -1,6 +1,6 @@
 {% set name = "clad" %}
 {% set version = "1.4" %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 
 {% set clang_ver = (clangdev or "None").split(".")[0] %}
 
@@ -40,7 +40,7 @@ requirements:
   run_constrained:
     - cling ==9999999999  # [clangdev != "9.*"]
     - cling 0.9           # [clangdev == "9.*"]
-    - clangdev =={{ clang_ver }}
+    - clangdev ={{ clang_ver }}
 
 test:
   requires:   # [clangdev == "9.*" and not win]
