@@ -29,10 +29,10 @@ requirements:
     - {{ compiler('cxx') }}
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
-    - llvm  # [llvmdev == "7.*"]
+    - llvm  # [llvmdev != "7.*"]
     - llvmdev
-    - clangdev {{ clang_ver }}
-    - llvm-tools # FileCheck
+    - clangdev ={{ clang_ver }}
+    - llvm-tools  # [llvmdev != "7.*"] # FileCheck
     - lit
     - libcxx {{ cxx_compiler_version }}  # [osx]
   host:
@@ -48,8 +48,8 @@ requirements:
 test:
   requires:
     - lit
-    - llvm-tools # FileCheck
-    - clangdev {{ clang_ver }}
+    - llvm-tools  # [llvmdev != "7.*"] # FileCheck
+    - clangdev ={{ clang_ver }}
     - libstdcxx-devel_{{ target_platform }}  # [linux]
     - libcxx {{ cxx_compiler_version }}  # [osx]
     - jupyter_kernel_test  # [clangdev == "9.*" and not win]
