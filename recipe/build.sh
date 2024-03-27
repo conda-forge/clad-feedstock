@@ -24,6 +24,10 @@ cmake ${CMAKE_ARGS} \
 make -j${CPU_COUNT}
 # Make FileCheck findable.
 ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
+
+# Some conda builds decide to define the CLANG env variable. This confuses lit
+# as it tries to use compiler defined in that env variable.
+unset CLANG
 make -j${CPU_COUNT} check-clad VERBOSE=1
 make install
 
