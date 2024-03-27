@@ -23,6 +23,7 @@ build:
 
 requirements:
   build:
+    - git
     - cmake
     - make   # [unix]
     - ninja  # [win]
