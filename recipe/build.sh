@@ -5,16 +5,30 @@ set -x
 mkdir build
 cd build
 
-#if [[ "$(uname)" == "Linux"* ]]; then
-#  export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-#  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-#  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
-#fi
+if [[ "$(uname)" == "Linux"* ]]; then
+  if [[ "$llvmdev" == "7.*" || "$llvmdev" == "8.*" || "$llvmdev" == "9.*" ]]; then
+    #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+    #export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
+    GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
+    export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/
+    CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
+  fi
+fi
 
 if [[ "$(uname)" == "Darwin"* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
+
+if [[ -n "$GXX" ]]; then
+  echo "#include <vector>
+  int main() {}" | $GXX -xc++ - -v
+fi
+
+# Check clang's sanity.
+echo "#include <vector>
+int main() {}" | clang $CXXFLAGS -xc++ - -v
 
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
