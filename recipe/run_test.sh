@@ -2,6 +2,8 @@
 
 set -x
 
+export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+
 # Check if shared object is in place.
 test -f $PREFIX/lib/clad${SHLIB_EXT}
 
