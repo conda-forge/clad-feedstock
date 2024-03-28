@@ -21,9 +21,13 @@ if [[ "$(uname)" == "Linux"* ]]; then
     find $CONDA_PREFIX
     export HOST="x86_64-unknown-linux-gnu"
     export GCCVERSION="12.3.0"
-    export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION/include
+    export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CPLUS_INCLUDE_PATH
+    export LD_LIBRARY_PATH=$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/lib:$LD_LIBRARY_PATH
+    export PATH=$CONDA_PREFIX/x86_64-conda-linux-gnu/bin:$CONDA_PREFIX/bin:$PATH
+    #export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION/include
     export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/lib:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION
+    #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/lib:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION
     
     CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
     
