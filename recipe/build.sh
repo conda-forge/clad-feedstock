@@ -14,10 +14,12 @@ if [[ "$(uname)" == "Linux"* ]]; then
     GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
     export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CPLUS_INCLUDE_PATH
     export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
+    export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/lib:$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:LD_LIBRARY_PATH
     CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
     echo ${clangdev}
     CLANGVERSION=${clangdev%.*}
     export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CPLUS_INCLUDE_PATH
+    export LD_LIBRARY_PATH=$CONDA_PREFIX/lib/clang/$CLANGVERSION/lib:LD_LIBRARY_PATH
     CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
   fi
 fi
