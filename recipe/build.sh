@@ -15,7 +15,8 @@ if [[ "$(uname)" == "Linux"* ]]; then
     export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CPLUS_INCLUDE_PATH
     export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
     CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
-    CLANGVERSION=$(basename $(dirname $(clang -print-libgcc-file-name)))
+    echo ${clangdev}
+    CLANGVERSION=${clangdev%.*}
     export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CPLUS_INCLUDE_PATH
     CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
   fi
