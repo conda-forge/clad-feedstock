@@ -5,10 +5,35 @@ set -x
 mkdir build
 cd build
 
+echo "Debug!!!"
+export
 if [[ "$(uname)" == "Linux"* ]]; then
-  export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
-  GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-  export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST
+  if [[ "$llvmdev" == "7.*" || "$llvmdev" == "8.*" || "$llvmdev" == "9.*" ]]; then
+    #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
+    #export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
+    ##GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
+    echo "$(basename $(dirname $(clang -print-libgcc-file-name)))"
+    CLANGVERSION="${clangdev%.*}.0.1"
+
+    ##export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION/include
+    ##export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
+    ##export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/lib:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION
+
+    find $CONDA_PREFIX
+    export HOST="x86_64-unknown-linux-gnu"
+    export GCCVERSION="12.3.0"
+    export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CPLUS_INCLUDE_PATH
+    export LD_LIBRARY_PATH=$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/lib:$LD_LIBRARY_PATH
+    export PATH=$CONDA_PREFIX/x86_64-conda-linux-gnu/bin:$CONDA_PREFIX/bin:$PATH
+    #export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION/include
+    export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
+    #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib:$CONDA_PREFIX/$HOST/sysroot/usr/lib:$CONDA_PREFIX/$HOST/sysroot/lib:$CONDA_PREFIX/$HOST/lib:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION
+    
+    #CXXFLAGS="${CXXFLAGS} -B $BUILD_PREFIX/bin/x86_64-conda-linux-gnu- -shared-libgcc"
+    
+    export GXX=clang
+  fi
 fi
 
 if [[ "$(uname)" == "Darwin"* ]]; then
@@ -16,11 +41,28 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
 
+if [[ -n "$GXX" ]]; then
+  echo "#include <vector>
+  int main() {}" | $GXX -xc++ - -v
+fi
+
+# Check clang's sanity.
+echo "#include <vector>
+int main() {}" | clang $CXXFLAGS -xc++ - -v
+
 cmake ${CMAKE_ARGS} \
       -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+      -DLLVM_EXTERNAL_LIT=`which lit` \
       $SRC_DIR/source
 
 make -j${CPU_COUNT}
+# Make FileCheck findable.
+ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
+
+# Some conda builds decide to define the CLANG env variable. This confuses lit
+# as it tries to use compiler defined in that env variable.
+unset CLANG
+make -j${CPU_COUNT} check-clad VERBOSE=1
 make install
 
 echo "Making xeus-cling based Jupyter kernels"

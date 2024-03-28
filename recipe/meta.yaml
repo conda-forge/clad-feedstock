@@ -15,22 +15,27 @@ source:
 
 build:
   skip: true  # [win]
-  skip: true  # [linux and (clangdev in ("7.*", "8.*"))]
-  skip: true  # [osx and (clangdev in ("7.*", "8.*", "9.*", "10.*", "11.*", "12.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}
+  ignore_run_exports_from:
+    - xz      # [unix]
+    - zstd    # [unix]
 
 requirements:
   build:
+    - git
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [clangdev != "7.*" and clangdev != "8.*" and clangdev != "9.*"]
+    - libstdcxx-devel_{{ target_platform }}  # [linux and (clangdev == "7.*" or clangdev == "8.*" or clangdev == "9.*")]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
-    - llvm  # [llvmdev not in ("5.*", "6.*", "7.*")]
+    - llvm  # [llvmdev != "7.*"]
     - llvmdev
-    - clangdev {{ clang_ver }}
+    - clangdev ={{ clang_ver }}
+    - llvm-tools  # [llvmdev != "7.*"] # FileCheck
+    - lit
     - libcxx {{ cxx_compiler_version }}  # [osx]
   host:
     - xz
@@ -43,19 +48,26 @@ requirements:
     - clangdev ={{ clang_ver }}
 
 test:
-  requires:   # [clangdev == "9.*" and not win]
+  requires:
+    - lit
+    - llvm-tools  # [llvmdev != "7.*"] # FileCheck
+    - clangdev ={{ clang_ver }}
+    - libstdcxx-devel_{{ target_platform }}  # [linux]
+    - libcxx {{ cxx_compiler_version }}  # [osx]
     - jupyter_kernel_test  # [clangdev == "9.*" and not win]
+    - {{ compiler('cxx') }}
+    # LLVM was split into multiple outputs as part of the 8.x update
+    - llvm  # [llvmdev != "7.*"]
+    - llvmdev
 #    - xeus-cling           # [clangdev == "9.*" and not win]
 #    - xeus-cpp
+
   files:
     - $RECIPE_DIR/jupyter_Clad_kernel_test.py
-  commands:
-#    - python $RECIPE_DIR/jupyter_Clad_kernel_test.py  # [clangdev == "9.*" and not win]
-    - test -f $PREFIX/lib/clad${SHLIB_EXT}  # [unix]
-    - echo.>NUL  # [win]
-#    # - if not exist %LIBRARY_BIN%\\clad.dll exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladDifferentiator.lib exit 1  # [win]
-#    #- if not exist %LIBRARY_LIB%\\cladPlugin.lib exit 1  # [win]
+    - test.cpp
+
+  source_files:
+    - source/test
 
 about:
   home: https://github.com/vgvassilev/clad
@@ -66,8 +78,8 @@ about:
   description: |
     Clad enables automatic differentiation (AD) for C++. It is based on LLVM
     compiler infrastructure and is a plugin for Clang compiler.
-  doc_url: https://github.com/vgvassilev/clad/blob/master/README.md
-  dev_url: https://github.com/vgvassilev/clad/wiki
+  doc_url: https://clad.readthedocs.io/en/latest/index.html
+  dev_url: https://clad.readthedocs.io/en/latest/user/DevelopersDocumentation.html
 
 extra:
   recipe-maintainers:
