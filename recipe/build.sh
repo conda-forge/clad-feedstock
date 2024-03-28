@@ -12,7 +12,8 @@ if [[ "$(uname)" == "Linux"* ]]; then
     #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
     #export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
     ##GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
-    CLANGVERSION=${clangdev%.*}
+    echo "$(basename $(dirname $(clang -print-libgcc-file-name)))"
+    CLANGVERSION="${clangdev%.*}.0.1"
 
     ##export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$CONDA_PREFIX/lib/clang/$CLANGVERSION/include:$CONDA_PREFIX/$HOST/sysroot/usr/include:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION:$CONDA_PREFIX/$HOST/include/c++/$GCCVERSION/$HOST:$CONDA_PREFIX/lib/gcc/$HOST/$GCCVERSION/include
     ##export C_INCLUDE_PATH=$CONDA_PREFIX/$HOST/usr/include/:$C_INCLUDE_PATH
