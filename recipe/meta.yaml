@@ -54,6 +54,10 @@ test:
     - libstdcxx-devel_{{ target_platform }}  # [linux]
     - libcxx {{ cxx_compiler_version }}  # [osx]
     - jupyter_kernel_test  # [clangdev == "9.*" and not win]
+    - {{ compiler('cxx') }}
+    # LLVM was split into multiple outputs as part of the 8.x update
+    - llvm  # [llvmdev != "7.*"]
+    - llvmdev
 #    - xeus-cling           # [clangdev == "9.*" and not win]
 #    - xeus-cpp
 
