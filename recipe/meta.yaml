@@ -27,7 +27,7 @@ requirements:
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [clangdev != "7.*" and clangdev != "8.*" and clangdev != "9.*"]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm  # [llvmdev != "7.*"]
