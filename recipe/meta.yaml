@@ -1,8 +1,11 @@
 {% set name = "clad" %}
 {% set version = "1.4" %}
-{% set build_number = 2 %}
+{% set build_number = 3 %}
 
-{% set clang_ver = (clangdev or "None").split(".")[0] %}
+{% set cling_ver = "0.9" %}
+{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
+{% set clang_ver = clangdev_cling if "cling" in clangdev else (clangdev or "None").split(".")[0] %}
+{% set clang_ver_string = (clangdev_cling or "None").split(".")[0] + "_cling_v0.9" if "cling" in clangdev else clang_ver %}
 
 package:
   name: {{ name|lower }}
@@ -14,11 +17,12 @@ source:
   folder: source
   patches:
     - patches/0001-cmake-EE.patch
+    - patches/0002-cmake-DISABLE_LLVM_LINK_LLVM_DYLIB.patch
 
 build:
   skip: true  # [win]
   number: {{ build_number }}
-  string: clang{{ clang_ver }}_h{{ PKG_HASH }}_{{ build_number }}
+  string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
     - xz      # [unix]
     - zstd    # [unix]
@@ -37,16 +41,16 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
   host:
     - xz
     - zstd
   run:
     - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
-    - cling ==9999999999  # [clangdev != "9.*"]
-    - cling 0.9           # [clangdev == "9.*"]
+    - cling ==9999999999  # ["cling" != clangdev]
+    - cling {{ cling_ver }}  # ["cling" == clangdev]
     - clangdev ={{ clang_ver }}
 
 test:
@@ -55,23 +59,24 @@ test:
     - llvm-tools # FileCheck
     - clangdev ={{ clang_ver }}
     - libstdcxx-devel_{{ target_platform }}  # [linux]
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
     - {{ compiler('cxx') }}  # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
-    - jupyter_kernel_test  # [linux and clangdev in ("9.*", "16.*")]
-    #- xeus-cling           # [clangdev == "9.*"]
-    - xeus-cpp  # [linux and clangdev == "16.*"]
+    - cling           # [linux and "cling" == clangdev]
+    - jupyter_kernel_test  # [linux and clangdev == "17.*" or "cling" == clangdev]
+    - xeus-cling           # [linux and "cling" == clangdev]
+    - xeus-cpp =0.4.0  # [linux and clangdev == "17.*"]
 
 
   files:
-    - $RECIPE_DIR/jupyter_Clad_kernel_test.py
+    #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
     - test.cpp
 
-  source_files:
-    - source/test
+  #source_files:
+  #  - source/test
 
 about:
   home: https://github.com/vgvassilev/clad
