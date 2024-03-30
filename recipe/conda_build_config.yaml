@@ -9,6 +9,7 @@ llvmdev:
   - 15.*
   - 16.*
   - 17.*
+  - 9.0.1.cling_v0.9
 clangdev:
   - 8.*
   - 9.*
@@ -20,6 +21,7 @@ clangdev:
   - 15.*
   - 16.*
   - 17.*
+  - 9.0.1.cling_v0.9
 zip_keys:
   -
     - llvmdev
