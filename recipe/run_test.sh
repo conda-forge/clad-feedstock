@@ -9,7 +9,7 @@ test -f $PREFIX/lib/clad${SHLIB_EXT}
 
 # Check installed compiler sanity.
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ "$llvmdev" == "8.*" || "$llvmdev" == "9.*" ]]; then
+  if [[ "$clangdev" == "8.*" || "$clangdev" == "9.*" ]]; then
     #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
     #export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
     GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
@@ -37,25 +37,35 @@ echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 clang $CXXFLAGS -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
-#if [ "$llvmdev" == "9.*" ]; then
-#    # Let's make a sanity check for cling first.
-#    echo "
-##include "clad/Differentiator/Differentiator.h"
-#
-#double sq (double x) { return x*x; }
-#auto d_sq = clad::differentiate(sq, \"x\");
-#if (d_sq.execute(1) == 2) printf(\"success\");
-#
-#" | cling -fplugin=$PREFIX/lib/clad${SHLIB_EXT} | grep "success"
-#
-#fi
+# Make sure we do not link anything llvm or clang related
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  #if [[ "$llvmdev" == "9.*" || "$llvmdev" == "16.*" ]]; then
-  if [[ "$llvmdev" == "16.*" ]]; then
-    # Try running a kernel test for xeus-cling (in case of 9) and xeus-cpp (in
-      # case of 16).
-      python $RECIPE_DIR/jupyter_Clad_kernel_test.py
+  ldd $PREFIX/lib/clad${SHLIB_EXT}  | grep -i llvm && exit 1
+  ldd $PREFIX/lib/clad${SHLIB_EXT}  | grep -i clang && exit 1
+fi
+
+if [[ "$(uname)" == "Darwin"* ]]; then
+  otool -L $PREFIX/lib/clad${SHLIB_EXT}  | grep -i llvm && exit 1
+  otool -L $PREFIX/lib/clad${SHLIB_EXT}  | grep -i clang && exit 1
+fi
+
+# Let's make a sanity check for cling first.
+if [[ $clangdev == *"cling"* ]]; then
+  echo "
+#include \"clad/Differentiator/Differentiator.h\"
+
+double sq (double x) { return x*x; }
+auto d_sq = clad::differentiate(sq, \"x\");
+if (d_sq.execute(1) == 2) printf(\"success\");
+
+" | cling -fplugin=$PREFIX/lib/clad${SHLIB_EXT} | grep "success"
+
+fi
+
+if [[ "$(uname)" == "Linux"* ]]; then
+  if [[ $clangdev == *"cling"* || $clangdev == "17.*" ]]; then
+    # Try running a kernel test for xeus-cling and xeus-cpp (in case of 17).
+    python $RECIPE_DIR/jupyter_Clad_kernel_test.py
   fi
 fi
 

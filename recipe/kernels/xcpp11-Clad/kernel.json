@@ -5,6 +5,7 @@
     "-f",
     "{connection_file}",
     "-fplugin=@PREFIX@/lib/clad@SHLIB_EXT@",
+    "-resource-dir", "@RESOURCE_DIR@",
     "-std=c++11"
   ],
   "language": "C++11"

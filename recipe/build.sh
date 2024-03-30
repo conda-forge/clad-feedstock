@@ -6,7 +6,7 @@ mkdir build
 cd build
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ "$llvmdev" == "8.*" || "$llvmdev" == "9.*" ]]; then
+  if [[ "$clangdev" == "8.*" || "$clangdev" == "9.*" ]]; then
     #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
     #export CONDA_BUILD_SYSROOT=$PREFIX/$HOST/sysroot
     GCCVERSION=$(basename $(dirname $($GXX -print-libgcc-file-name)))
@@ -51,7 +51,7 @@ make -j${CPU_COUNT}
 if [[ "$(uname)" == "Linux"* ]]; then
   # The llvm-tools-8 package do not have FileCheck. Clad's test Misc/RunDemos.C
   # fails with clang-9.
-  if ! [[ "$llvmdev" == "8.*" || "$llvmdev" == "9.*" ]]; then
+  if ! [[ "$clangdev" == "8.*" || "$clangdev" == "9.*" || "$clangdev" == "cling" ]]; then
       # Make FileCheck findable.
       ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
 
@@ -68,6 +68,11 @@ echo "Making xeus-cling based Jupyter kernels"
 mkdir -p $PREFIX/share/jupyter/kernels/
 cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
 sed -i "s#@PREFIX@#$PREFIX#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+
+CLANG_RESOURCE_DIR=$(clang -print-resource-dir)
+echo $CLANG_RESOURCE_DIR | grep 17 || exit 1
+sed -i "s#@RESOURCE_DIR@#$CLANG_RESOURCE_DIR#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+
 sed -i "s#@SHLIB_EXT@#$SHLIB_EXT#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
 exit 0
