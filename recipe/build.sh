@@ -75,4 +75,7 @@ sed -i "s#@RESOURCE_DIR@#$CLANG_RESOURCE_DIR#g" $PREFIX/share/jupyter/kernels/*-
 
 sed -i "s#@SHLIB_EXT@#$SHLIB_EXT#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
+CLAD_VERSION=v1.4
+sed -i "s#@CLAD_VERSION@#$CLAD_VERSION#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+
 exit 0

@@ -1,5 +1,5 @@
 {
-  "display_name": "C++14-Clad",
+  "display_name": "C++14-Clad-@CLAD_VERSION@",
   "argv": [
     "@PREFIX@/bin/xcpp",
     "-f",
