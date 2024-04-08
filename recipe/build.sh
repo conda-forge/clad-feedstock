@@ -64,18 +64,23 @@ fi
 
 make install
 
-echo "Making xeus-cling based Jupyter kernels"
-mkdir -p $PREFIX/share/jupyter/kernels/
-cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
-sed -i "s#@PREFIX@#$PREFIX#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+if [[ "$clangdev" == "17.*" || "$clangdev" == "cling" ]]; then
+  echo "Making xeus-cling based Jupyter kernels"
+  mkdir -p $PREFIX/share/jupyter/kernels/
+  cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
+  sed -i "s#@PREFIX@#$PREFIX#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
-CLANG_RESOURCE_DIR=$(clang -print-resource-dir)
-echo $CLANG_RESOURCE_DIR | grep 17 || exit 1
-sed -i "s#@RESOURCE_DIR@#$CLANG_RESOURCE_DIR#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+  CLANG_RESOURCE_DIR=$(clang -print-resource-dir)
+  # Replace the PREFIX part so that when conda install the package updates the path
+  CLANG_RESOURCE_DIR=$(echo $CLANG_RESOURCE_DIR | sed "s#$BUILD_PREFIX##g")
+  sed -i "s#@RESOURCE_DIR@#$PREFIX/$CLANG_RESOURCE_DIR#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
-sed -i "s#@SHLIB_EXT@#$SHLIB_EXT#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+  sed -i "s#@SHLIB_EXT@#$SHLIB_EXT#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
-CLAD_VERSION=v1.4
-sed -i "s#@CLAD_VERSION@#$CLAD_VERSION#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+  CLAD_VERSION=v1.4
+  sed -i "s#@CLAD_VERSION@#$CLAD_VERSION#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
+
+  cat $PREFIX/share/jupyter/kernels/*-Clad/*.json
+fi
 
 exit 0
