@@ -63,7 +63,9 @@ if (d_sq.execute(1) == 2) printf(\"success\");
 fi
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ $clangdev == *"cling"* || $clangdev == "17.*" ]]; then
+# FIXME: Xeus-Cpp does not support stream redirection, re-enable once we have it.
+#  if [[ $clangdev == *"cling"* || $clangdev == "17.*" ]]; then
+  if [[ $clangdev == *"cling"* ]]; then
     # Try running a kernel test for xeus-cling and xeus-cpp (in case of 17).
     python $RECIPE_DIR/jupyter_Clad_kernel_test.py
   fi
