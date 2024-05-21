@@ -16,9 +16,9 @@ source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: fa044d8a161cbe3ed4e97df0e7ab2b1064a7f3fce7593f0a5d583f4bd866bf90
   folder: source
-  patches:
-    - patches/0001-cmake-EE.patch
-    - patches/0002-cmake-DISABLE_LLVM_LINK_LLVM_DYLIB.patch
+#  patches:
+#    - patches/0001-cmake-EE.patch
+#    - patches/0002-cmake-DISABLE_LLVM_LINK_LLVM_DYLIB.patch
 
 build:
   skip: true  # [win]
