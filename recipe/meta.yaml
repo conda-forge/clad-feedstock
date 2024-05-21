@@ -1,6 +1,7 @@
+{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
-{% set version = "1.4" %}
-{% set build_number = 4 %}
+{% set version = "1.5" %}
+{% set build_number = 0 %}
 
 {% set cling_ver = "0.9" %}
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
@@ -13,7 +14,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: da5584159499b05d77cfca40baee5d4d212beb269637736fee34d84d2b82d419
+  sha256: fa044d8a161cbe3ed4e97df0e7ab2b1064a7f3fce7593f0a5d583f4bd866bf90
   folder: source
   patches:
     - patches/0001-cmake-EE.patch
@@ -34,6 +35,7 @@ requirements:
     - make   # [unix]
     - ninja  # [win]
     - {{ compiler('cxx') }}  # [linux]
+    - {{ stdlib("c") }}    # [linux]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
@@ -47,7 +49,6 @@ requirements:
     - xz
     - zstd
   run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
     - cling ==9999999999  # ["cling" != clangdev]
     - cling {{ cling_ver }}  # ["cling" == clangdev]
