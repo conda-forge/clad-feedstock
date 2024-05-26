@@ -34,6 +34,8 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
+echo "@@@"
+find / | grep "libstdc++"
 clang++ -v $CXXFLAGS -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity -lstdc++ test.cpp
 ./sanity
 

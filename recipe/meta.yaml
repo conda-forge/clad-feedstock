@@ -63,6 +63,7 @@ test:
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
     - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
     - {{ compiler('cxx') }}  # [linux]
+    - {{ stdlib("c") }}    # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
