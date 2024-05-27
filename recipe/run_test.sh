@@ -35,13 +35,13 @@ if [[ "$(uname)" == "Linux"* ]]; then
   #fi
 fi
 
-if [[ "$(uname)" == "Darwin"* ]]; then
-  echo "@@@1"
-  if [[ "$clangdev" == "10.*" ]]; then
-    echo "@@@2"
-    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
-  fi
-fi
+#if [[ "$(uname)" == "Darwin"* ]]; then
+#  echo "@@@1"
+#  if [[ "$clangdev" == "10.*" ]]; then
+#    echo "@@@2"
+#    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
+#  fi
+#fi
 
 clang --version
 echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
@@ -49,7 +49,8 @@ echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
 echo "@@@3"
-clang -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+g++ -v $CXXFLAGS -I$PREFIX/include -osanity test.cpp
+clang++ -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
