@@ -2,6 +2,8 @@
 
 set -x
 
+echo "@@@"
+
 #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
 
 # Check if shared object is in place.
@@ -46,6 +48,7 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
+echo "@@@3"
 clang++ -v $CXXFLAGS -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
