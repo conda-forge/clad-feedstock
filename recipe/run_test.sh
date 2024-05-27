@@ -2,8 +2,6 @@
 
 set -x
 
-echo "@@@"
-
 #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
 
 # Check if shared object is in place.
@@ -28,28 +26,14 @@ if [[ "$(uname)" == "Linux"* ]]; then
     export CFLAGS="$CFLAGS -isysroot $CONDA_BUILD_SYSROOT"
     export CXXFLAGS="$CXXFLAGS -isysroot $CONDA_BUILD_SYSROOT"
   fi
-
-  #if [[ "$clangdev" == "10.*" ]]; then
-    echo "@@@"
-    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
-  #fi
 fi
-
-#if [[ "$(uname)" == "Darwin"* ]]; then
-#  echo "@@@1"
-#  if [[ "$clangdev" == "10.*" ]]; then
-#    echo "@@@2"
-#    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
-#  fi
-#fi
 
 clang --version
 echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
-echo "@@@3"
-clang++ -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
