@@ -28,6 +28,11 @@ fi
 if [[ "$(uname)" == "Darwin"* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+  echo "@@@A"
+  if [[ "$clangdev" == "10.*" ]]; then
+    echo "@@@B"
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
+  fi
 fi
 
 if [[ -n "$GXX" ]]; then
