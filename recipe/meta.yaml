@@ -45,6 +45,7 @@ requirements:
     - lit
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
     - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
+    - gxx
   host:
     - xz
     - zstd
@@ -71,6 +72,7 @@ test:
     - jupyter_kernel_test  # [linux and clangdev == "17.*" or "cling" == clangdev]
     - xeus-cling           # [linux and "cling" == clangdev]
     - xeus-cpp =0.4.0  # [linux and clangdev == "17.*"]
+    - gxx
 
 
   files:
