@@ -32,6 +32,8 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   if [[ "$clangdev" == "10.*" ]]; then
     echo "@@@B"
     export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
+    ls -la $CONDA_PREFIX/lib/clang/10.0.1/include
+    cat $CONDA_PREFIX/lib/clang/10.0.1/include/stddef.h
   fi
 fi
 
