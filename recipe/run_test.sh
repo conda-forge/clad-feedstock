@@ -49,7 +49,6 @@ echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
 echo "@@@3"
-g++ -v $CXXFLAGS -I$PREFIX/include -osanity test.cpp
 clang++ -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
