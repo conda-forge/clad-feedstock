@@ -33,6 +33,14 @@ if [[ "$(uname)" == "Linux"* ]]; then
   #fi
 fi
 
+if [[ "$(uname)" == "Darwin"* ]]; then
+  echo "@@@1"
+  if [[ "$clangdev" == "10.*" ]]; then
+    echo "@@@2"
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
+  fi
+fi
+
 clang --version
 echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
