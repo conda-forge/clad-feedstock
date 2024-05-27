@@ -1,9 +1,0 @@
-diff --git a/unittests/Misc/Defs.cpp b/unittests/Misc/Defs.cpp
-index bf0a2aa..79e14aa 100644
---- a/unittests/Misc/Defs.cpp
-+++ b/unittests/Misc/Defs.cpp
-@@ -1,3 +1,4 @@
-+#include <stddef.h>
- #include "clad/Differentiator/Differentiator.h"
-
- double foo(double x, double alpha, double theta, double x0 = 0) {

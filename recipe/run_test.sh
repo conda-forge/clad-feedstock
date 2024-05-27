@@ -27,6 +27,10 @@ if [[ "$(uname)" == "Linux"* ]]; then
     export CXXFLAGS="$CXXFLAGS -isysroot $CONDA_BUILD_SYSROOT"
 
   fi
+
+  if [[ "$clangdev" == "10.*" ]]; then
+    export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1:$CPLUS_INCLUDE_PATH
+  fi
 fi
 
 clang --version
