@@ -68,9 +68,13 @@ test:
     - jupyter_kernel_test  # [linux and clangdev == "17.*" or "cling" == clangdev]
     - xeus-cling           # [linux and "cling" == clangdev]
     - xeus-cpp =0.4.0  # [linux and clangdev == "17.*"]
+    - cmake
+    - make   # [unix]
+    - ninja  # [win]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
+    - CMakeList.txt
     - test.cpp
 
   #source_files:

@@ -33,8 +33,21 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
-clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+#clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+mkdir build
+cd build
+echo "cmake_minimum_required(VERSION 3.7.0)
+project(sanity_proj)
+enable_language(CXX)
+include_directories($ENV{CONDA_PREFIX}/include)
+link_directories($ENV{CONDA_PREFIX}/lib)
+add_executable(sanity ../test.cpp)
+" > CMakeLists.txt
+cmake .
+make
+find .
 ./sanity
+cd ..
 
 # Make sure we do not link anything llvm or clang related
 
