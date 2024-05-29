@@ -19,6 +19,7 @@ source:
 
 build:
   skip: true  # [win]
+  skip: true  # [linux and clangdev in ("8.*")]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
@@ -40,8 +41,8 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*" , "cling")]
   host:
     - xz
     - zstd
@@ -65,16 +66,12 @@ test:
     - llvm
     - llvmdev
     - cling           # [linux and "cling" == clangdev]
-    - jupyter_kernel_test  # [linux and clangdev == "17.*" or "cling" == clangdev]
+    - jupyter_kernel_test  # [linux and clangdev == "18.*" or "cling" == clangdev]
     - xeus-cling           # [linux and "cling" == clangdev]
-    - xeus-cpp =0.4.0  # [linux and clangdev == "17.*"]
-    - cmake
-    - make   # [unix]
-    - ninja  # [win]
+    - xeus-cpp =0.4.0  # [linux and clangdev == "18.*"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
-    - CMakeList.txt
     - test.cpp
 
   #source_files:

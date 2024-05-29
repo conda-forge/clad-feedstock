@@ -33,21 +33,7 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
-#clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
-mkdir build
-cd build
-echo "cmake_minimum_required(VERSION 3.7.0)
-project(sanity_proj)
-enable_language(CXX)
-include_directories($ENV{CONDA_PREFIX}/include)
-link_directories($ENV{CONDA_PREFIX}/lib)
-add_executable(sanity ../test.cpp)
-" > CMakeLists.txt
-cmake .
-make
-find .
-./sanity
-cd ..
+clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 
 # Make sure we do not link anything llvm or clang related
 
@@ -76,9 +62,9 @@ fi
 
 if [[ "$(uname)" == "Linux"* ]]; then
 # FIXME: Xeus-Cpp does not support stream redirection, re-enable once we have it.
-#  if [[ $clangdev == *"cling"* || $clangdev == "17.*" ]]; then
+#  if [[ $clangdev == *"cling"* || $clangdev == "18.*" ]]; then
   if [[ $clangdev == *"cling"* ]]; then
-    # Try running a kernel test for xeus-cling and xeus-cpp (in case of 17).
+    # Try running a kernel test for xeus-cling and xeus-cpp (in case of 18).
     python $RECIPE_DIR/jupyter_Clad_kernel_test.py
   fi
 fi
