@@ -18,8 +18,7 @@ source:
   folder: source
 
 build:
-  skip: true  # [win]
-  skip: true  # [linux and clangdev in ("8.*")]
+  skip: true  # [win or (linux and clangdev in ("8.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
