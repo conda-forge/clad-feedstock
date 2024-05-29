@@ -1,6 +1,7 @@
+{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
-{% set version = "1.4" %}
-{% set build_number = 4 %}
+{% set version = "1.5" %}
+{% set build_number = 0 %}
 
 {% set cling_ver = "0.9" %}
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
@@ -13,14 +14,13 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: da5584159499b05d77cfca40baee5d4d212beb269637736fee34d84d2b82d419
+  sha256: fa044d8a161cbe3ed4e97df0e7ab2b1064a7f3fce7593f0a5d583f4bd866bf90
   folder: source
   patches:
-    - patches/0001-cmake-EE.patch
-    - patches/0002-cmake-DISABLE_LLVM_LINK_LLVM_DYLIB.patch
+    - patches/0001-install-cmake-AddClad.patch
 
 build:
-  skip: true  # [win]
+  skip: true  # [win or (linux and clangdev == "8.*")]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
@@ -34,6 +34,7 @@ requirements:
     - make   # [unix]
     - ninja  # [win]
     - {{ compiler('cxx') }}  # [linux]
+    - {{ stdlib("c") }}    # [linux]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
@@ -41,13 +42,12 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*" , "cling")]
   host:
     - xz
     - zstd
   run:
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("13.0") }}  # [osx]
   run_constrained:
     - cling ==9999999999  # ["cling" != clangdev]
     - cling {{ cling_ver }}  # ["cling" == clangdev]
@@ -62,14 +62,14 @@ test:
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
     - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
     - {{ compiler('cxx') }}  # [linux]
+    - {{ stdlib("c") }}    # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
     - cling           # [linux and "cling" == clangdev]
-    - jupyter_kernel_test  # [linux and clangdev == "17.*" or "cling" == clangdev]
+    - jupyter_kernel_test  # [linux and clangdev == "18.*" or "cling" == clangdev]
     - xeus-cling           # [linux and "cling" == clangdev]
-    - xeus-cpp =0.4.0  # [linux and clangdev == "17.*"]
-
+    - xeus-cpp =0.4.0  # [linux and clangdev == "18.*"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py

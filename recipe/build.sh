@@ -28,6 +28,12 @@ fi
 if [[ "$(uname)" == "Darwin"* ]]; then
   # See https://conda-forge.org/docs/maintainer/knowledge_base.html#newer-c-features-with-old-sdk
   CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+  #if [[ "$clangdev" == "10.*" ]]; then
+  #  #export CPLUS_INCLUDE_PATH=$CONDA_PREFIX/lib/clang/10.0.1/include:$CPLUS_INCLUDE_PATH
+  #  #export CXXFLAGS="$CXXFLAGS -I$CONDA_PREFIX/lib/clang/10.0.1/include"
+  #  export CFLAGS="$CFLAGS -isysroot $CONDA_BUILD_SYSROOT"
+  #  export CXXFLAGS="$CXXFLAGS -isysroot $CONDA_BUILD_SYSROOT"
+  #fi
 fi
 
 if [[ -n "$GXX" ]]; then
@@ -77,7 +83,7 @@ if [[ "$clangdev" == "17.*" || "$clangdev" == "cling" ]]; then
 
   sed -i "s#@SHLIB_EXT@#$SHLIB_EXT#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
-  CLAD_VERSION=v1.4
+  CLAD_VERSION="v$PKG_VERSION"
   sed -i "s#@CLAD_VERSION@#$CLAD_VERSION#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
 
   cat $PREFIX/share/jupyter/kernels/*-Clad/*.json
