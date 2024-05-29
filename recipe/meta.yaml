@@ -16,9 +16,11 @@ source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
   sha256: fa044d8a161cbe3ed4e97df0e7ab2b1064a7f3fce7593f0a5d583f4bd866bf90
   folder: source
+  patches:
+    - 0001-install-cmake-AddClad.patch
 
 build:
-  skip: true  # [win or (linux and clangdev in ("8.*"))]
+  skip: true  # [win or (linux and clangdev == "8.*")]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
