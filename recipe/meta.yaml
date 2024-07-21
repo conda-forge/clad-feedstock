@@ -18,7 +18,6 @@ source:
   sha256: 18b4a3694f40d7a1cd510237f83d0be1e3c83c435dd9e1395ac4068e21a77b01
   folder: source
   patches:
-    - patches/0001-install-cmake-AddClad.patch
 
 build:
   skip: true  # [win or (linux and clangdev == "8.*")]
