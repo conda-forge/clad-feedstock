@@ -2,7 +2,7 @@
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
 {% set version = "1.6" %}
-{% set build_number = 0 %}
+{% set build_number = 1 %}
 
 {% set cling_ver = "0.9" %}
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
