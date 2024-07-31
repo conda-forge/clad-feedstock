@@ -1,6 +1,7 @@
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
+{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
-{% set version = "1.5" %}
+{% set version = "1.6" %}
 {% set build_number = 0 %}
 
 {% set cling_ver = "0.9" %}
@@ -14,10 +15,9 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: fa044d8a161cbe3ed4e97df0e7ab2b1064a7f3fce7593f0a5d583f4bd866bf90
+  sha256: 18b4a3694f40d7a1cd510237f83d0be1e3c83c435dd9e1395ac4068e21a77b01
   folder: source
   patches:
-    - patches/0001-install-cmake-AddClad.patch
 
 build:
   skip: true  # [win or (linux and clangdev == "8.*")]
@@ -42,8 +42,8 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*" , "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
   host:
     - xz
     - zstd
@@ -59,8 +59,8 @@ test:
     - llvm-tools # FileCheck
     - clangdev ={{ clang_ver }}
     - libstdcxx-devel_{{ target_platform }}  # [linux]
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
     - {{ compiler('cxx') }}  # [linux]
     - {{ stdlib("c") }}    # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
