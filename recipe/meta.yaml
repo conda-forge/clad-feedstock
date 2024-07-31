@@ -69,7 +69,7 @@ test:
     - cling           # [linux and "cling" == clangdev]
     - jupyter_kernel_test  # [linux and clangdev == "18.*" or "cling" == clangdev]
     - xeus-cling           # [linux and "cling" == clangdev]
-    - xeus-cpp =0.4.0  # [linux and clangdev == "18.*"]
+    - xeus-cpp =0.5.0  # [linux and clangdev == "18.*"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
