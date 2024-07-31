@@ -42,8 +42,8 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*" , "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
+    - libcxx  # [osx and not clangdev in ("8.*", "9.*", "10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
   host:
     - xz
     - zstd
