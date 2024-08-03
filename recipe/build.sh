@@ -70,7 +70,7 @@ fi
 
 make install
 
-if [[ "$clangdev" == "17.*" || "$clangdev" == "cling" ]]; then
+if [[ "$clangdev" == "18.*" || "$clangdev" == "cling" ]]; then
   echo "Making xeus-cling based Jupyter kernels"
   mkdir -p $PREFIX/share/jupyter/kernels/
   cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
