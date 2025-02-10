@@ -3,7 +3,7 @@
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
-{% set version = "1.8" %}
+{% set version = "1.9" %}
 {% set build_number = 0 %}
 
 {% set cling_ver = "0.9" %}
@@ -17,7 +17,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 1dcff3cab33417c8b8595e9bdb139a2cd1ec9c15eb013a275ab4e004c5b65812
+  sha256: 25bd5f0c3d24fc6c0e33b670e7c165d0cd0f6c9187c0dc5c3f8034eea1d6b276
   folder: source
   patches:
 
