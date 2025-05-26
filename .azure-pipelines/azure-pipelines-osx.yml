@@ -35,11 +35,11 @@ jobs:
       osx_64_clangdev18._:
         CONFIG: osx_64_clangdev18._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev8._:
-        CONFIG: osx_64_clangdev8._
+      osx_64_clangdev19._:
+        CONFIG: osx_64_clangdev19._
         UPLOAD_PACKAGES: 'True'
-      osx_64_clangdev9._:
-        CONFIG: osx_64_clangdev9._
+      osx_64_clangdev20._:
+        CONFIG: osx_64_clangdev20._
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
