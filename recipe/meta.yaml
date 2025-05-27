@@ -70,8 +70,8 @@ test:
     - llvmdev
     - cling           # [linux and "cling" == clangdev]
     - jupyter_kernel_test  # [linux and clangdev == "18.*" or "cling" == clangdev]
-    - xeus-cpp
     - xeus-cling           # [linux and "cling" == clangdev]
+    - xeus-cpp # [linux and clangdev == "18.*"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py

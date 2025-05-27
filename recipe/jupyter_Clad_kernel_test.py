@@ -4,7 +4,7 @@ import jupyter_kernel_test
 
 class CladXCppTests(jupyter_kernel_test.KernelTests):
 
-    kernel_name = 'xcpp14-Clad'
+    kernel_name = 'xcpp20-Clad'
 
     # xeus-cpp uses "C++" in language_info.name
     language_name = 'C++'
@@ -29,10 +29,6 @@ std::cout << f_g.execute(2) << std::endl;'''
 
         # Assert that the expected value is in the output
         self.assertIn('4', combined_stdout)
-
-        print("Output from clad forward mode differentiation test:")
-        print(combined_stdout)
-
 
 if __name__ == '__main__':
     unittest.main()

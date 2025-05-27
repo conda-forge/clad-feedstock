@@ -1,5 +1,5 @@
 {
-  "display_name": "C++11-Clad-@CLAD_VERSION@",
+  "display_name": "C++23-Clad-@CLAD_VERSION@",
   "argv": [
     "@PREFIX@/bin/xcpp",
     "-f",
@@ -8,5 +8,5 @@
     "-resource-dir", "@RESOURCE_DIR@",
     "-std=c++11"
   ],
-  "language": "C++11"
+  "language": "C++23"
 }
