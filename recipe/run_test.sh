@@ -62,7 +62,7 @@ if (d_sq.execute(1) == 2) printf(\"success\");
 fi
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ $clangdev == *"cling"* || $clangdev == "18.*" ]]; then
+  if [[ $clangdev == *"cling"* || $clangdev == "20.*" ]]; then
   # if [[ $clangdev == *"cling"*]; then
     # Try running a kernel test for xeus-cling and xeus-cpp (in case of 18).
     python $RECIPE_DIR/jupyter_Clad_kernel_test.py
