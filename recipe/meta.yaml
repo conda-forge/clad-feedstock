@@ -68,10 +68,10 @@ test:
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
-    - cling           # [linux and "cling" == clangdev]
+    - cling  # [linux and "cling" == clangdev]
     - papermill  # [linux and clangdev == "20.*"]
     - nbformat  # [linux and clangdev == "20.*"]
-    - xeus-cling           # [linux and "cling" == clangdev]
+    - xeus-cling  # [linux and "cling" == clangdev]
     - xeus-cpp # [linux and clangdev == "20.*"]
 
   files:
