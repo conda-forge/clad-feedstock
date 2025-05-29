@@ -1,34 +1,57 @@
 import unittest
-import jupyter_kernel_test
+import platform
+import nbformat
+import papermill as pm
+import os
+import sys
 
+if platform.system() != 'Windows':
+    class XCppNotebookTests(unittest.TestCase):
 
-class CladXCppTests(jupyter_kernel_test.KernelTests):
+        notebook_paths = []
 
-    kernel_name = 'xcpp20-Clad'
+        def test_notebooks(self):
+            for path in self.notebook_paths:
+                inp = path
+                out = f'{os.path.splitext(path)[0]}_output.ipynb'
 
-    # xeus-cpp uses "C++" in language_info.name
-    language_name = 'C++'
+                with open(inp) as f:
+                    input_nb = nbformat.read(f, as_version=4)
 
-    # Code in the kernel's language to write "hello, world" to stdout
-    code_hello_world = '#include <iostream>\nstd::cout << "hello, world" << std::endl;'
+                try:
+                    # Execute the notebook
+                    executed_notebook = pm.execute_notebook( 
+                        inp, 
+                        out,
+                        log_output=True,
+                        kernel_name='xcpp20-Clad'
+                    )
 
-    def test_clad_forward_mode_output(self):
-        code = '''#include "clad/Differentiator/Differentiator.h"
-#include <iostream>
-double f(double x) { return x * x; }
-auto f_g = clad::differentiate(f);
-std::cout << f_g.execute(2) << std::endl;'''
-        reply, output_msgs = self.execute_helper(code)
+                    if executed_notebook is None:
+                        self.fail(f"Execution of notebook {path} returned None")
+                except Exception as e:
+                    self.fail(f"Notebook {path} failed to execute: {e}")
 
-        # Look for stream messages
-        stream_msgs = [msg for msg in output_msgs if msg['msg_type'] == 'stream']
-        # Extract stdout text from all stream messages
-        stdout_texts = [msg['content']['text'] for msg in stream_msgs if msg['content']['name'] == 'stdout']
+                with open(out) as f:
+                    output_nb = nbformat.read(f, as_version=4)
 
-        combined_stdout = ''.join(stdout_texts).strip()
+                for i, (input_cell, output_cell) in enumerate(zip(input_nb.cells, output_nb.cells)):
+                    if input_cell.cell_type == 'code' and output_cell.cell_type == 'code':
+                        if bool(input_cell.outputs) != bool(output_cell.outputs):
+                            self.fail(f"Cell {i} in notebook {path} has mismatched output presence")
+                        else:
+                            if input_cell.outputs != output_cell.outputs:
+                                self.fail(f"Cell {i} in notebook {path} has mismatched output type")
 
-        # Assert that the expected value is in the output
-        self.assertIn('4', combined_stdout)
+                try:
+                    os.remove(out)
+                except Exception as e:
+                    self.fail(f"Failed to delete output file {out}: {e}")
 
 if __name__ == '__main__':
-    unittest.main()
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <notebook1.ipynb> [<notebook2.ipynb> ...]")
+        sys.exit(1)
+
+    XCppNotebookTests.notebook_paths = sys.argv[1:]
+    unittest.main(argv=[sys.argv[0]])

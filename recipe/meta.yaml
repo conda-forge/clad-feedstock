@@ -69,7 +69,8 @@ test:
     - llvm
     - llvmdev
     - cling           # [linux and "cling" == clangdev]
-    - jupyter_kernel_test  # [linux and clangdev == "20.*" or "cling" == clangdev]
+    - papermill  # [linux and clangdev == "20.*"]
+    - nbformat  # [linux and clangdev == "20.*"]
     - xeus-cling           # [linux and "cling" == clangdev]
     - xeus-cpp # [linux and clangdev == "20.*"]
 
