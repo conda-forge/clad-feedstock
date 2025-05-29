@@ -10,6 +10,7 @@ clangdev:
   - 16.*
   - 17.*
   - 18.*
+  - 20.*
   - cling  #[linux]
 zip_keys:
   -
