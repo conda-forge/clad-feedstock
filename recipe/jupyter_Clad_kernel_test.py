@@ -24,7 +24,7 @@ if platform.system() != 'Windows':
                         inp, 
                         out,
                         log_output=True,
-                        kernel_name='xcpp20-Clad'
+                        kernel_name='xcpp17-Clad'
                     )
 
                     if executed_notebook is None:
