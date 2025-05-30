@@ -43,8 +43,7 @@ if [[ "$(uname)" == "Linux"* ]]; then
   # Some conda builds decide to define the CLANG env variable. This confuses
   # lit as it tries to use compiler defined in that env variable.
   unset CLANG
-      make -j${CPU_COUNT} check-clad VERBOSE=1
-  fi
+  make -j${CPU_COUNT} check-clad VERBOSE=1
 fi
 
 make install
