@@ -1,15 +1,9 @@
-{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
-{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
-{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
-{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
 {% set name = "clad" %}
 {% set version = "1.10" %}
 {% set build_number = 0 %}
 
-{% set cling_ver = "0.9" %}
-{% set clangdev_cling = "9.0.1=cling_v0.9*" %}
-{% set clang_ver = clangdev_cling if "cling" in clangdev else (clangdev or "None").split(".")[0] %}
-{% set clang_ver_string = (clangdev_cling or "None").split(".")[0] + "_cling_v0.9" if "cling" in clangdev else clang_ver %}
+{% set clang_ver = (clangdev or "None").split(".")[0] %}
+{% set clang_ver_string = clang_ver %}
 
 package:
   name: {{ name|lower }}
@@ -44,15 +38,14 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
+    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
   host:
     - xz
     - zstd
   run:
   run_constrained:
-    - cling ==9999999999  # ["cling" != clangdev]
-    - cling {{ cling_ver }}  # ["cling" == clangdev]
+
     - clangdev ={{ clang_ver }}
 
 test:
@@ -61,17 +54,15 @@ test:
     - llvm-tools # FileCheck
     - clangdev ={{ clang_ver }}
     - libstdcxx-devel_{{ target_platform }}  # [linux]
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
-    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*", "cling")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
+    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
     - {{ compiler('cxx') }}  # [linux]
     - {{ stdlib("c") }}    # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
-    - cling  # [linux and "cling" == clangdev]
     - nbval  # [linux and clangdev == "20.*"]
     - pytest  # [linux and clangdev == "20.*"]
-    - xeus-cling  # [linux and "cling" == clangdev]
     - xeus-cpp # [linux and clangdev == "20.*"]
     - jupyter_kernel_test # [linux and clangdev == "20.*"]
 

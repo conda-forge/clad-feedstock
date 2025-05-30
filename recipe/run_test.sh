@@ -48,23 +48,10 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   otool -L $PREFIX/lib/clad${SHLIB_EXT}  | grep -i clang && exit 1
 fi
 
-# Let's make a sanity check for cling first.
-if [[ $clangdev == *"cling"* ]]; then
-  echo "
-#include \"clad/Differentiator/Differentiator.h\"
-
-double sq (double x) { return x*x; }
-auto d_sq = clad::differentiate(sq, \"x\");
-if (d_sq.execute(1) == 2) printf(\"success\");
-
-" | cling -fplugin=$PREFIX/lib/clad${SHLIB_EXT} | grep "success"
-
-fi
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ $clangdev == *"cling"* || $clangdev == "20.*" ]]; then
-  # if [[ $clangdev == *"cling"*]; then
-    # Try running a kernel test for xeus-cling and xeus-cpp (in case of 18).
+  if [[ $clangdev == "20.*" ]]; then
+    # Try running a kernel test for xeus-cpp (in case of 20).
     pytest -sv $RECIPE_DIR/jupyter_Clad_kernel_test.py
   fi
 fi
