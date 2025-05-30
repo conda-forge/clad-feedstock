@@ -10,7 +10,6 @@ clangdev:
   - 18.*
   - 19.*
   - 20.*
-  - cling  #[linux]
 zip_keys:
   -
     - clangdev
@@ -20,7 +19,6 @@ c_compiler:          # [osx]
 cxx_compiler:        # [osx]
   - clang_bootstrap  # [osx]
 
-# Because of cling requiring gxx 10.
 cxx_compiler_version:  # [linux]
   - 10                 # [linux]
 

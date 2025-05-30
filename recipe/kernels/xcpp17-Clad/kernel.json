@@ -6,6 +6,7 @@
     "{connection_file}",
     "-fplugin=@PREFIX@/lib/clad@SHLIB_EXT@",
     "-resource-dir", "@RESOURCE_DIR@",
+    "-I", "@PREFIX@/include",
     "-std=c++17"
   ],
   "language": "C++17"
