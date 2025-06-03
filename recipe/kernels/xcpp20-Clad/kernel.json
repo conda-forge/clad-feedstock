@@ -1,12 +1,13 @@
 {
-  "display_name": "C++11-Clad-@CLAD_VERSION@",
+  "display_name": "C++20-Clad-@CLAD_VERSION@",
   "argv": [
     "@PREFIX@/bin/xcpp",
     "-f",
     "{connection_file}",
     "-fplugin=@PREFIX@/lib/clad@SHLIB_EXT@",
     "-resource-dir", "@RESOURCE_DIR@",
-    "-std=c++11"
+    "-I", "@PREFIX@/include",
+    "-std=c++20"
   ],
-  "language": "C++11"
+  "language": "C++20"
 }

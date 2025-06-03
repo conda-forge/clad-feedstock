@@ -37,21 +37,19 @@ make -j${CPU_COUNT}
 if [[ "$(uname)" == "Linux"* ]]; then
   # The llvm-tools-8 package do not have FileCheck. Clad's test Misc/RunDemos.C
   # fails with clang-9.
-  if ! [[ "$clangdev" == "cling" ]]; then
-      # Make FileCheck findable.
-      ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
+  # Make FileCheck findable.
+  ln -s $BUILD_PREFIX/libexec/llvm/FileCheck $BUILD_PREFIX/bin/FileCheck
 
-      # Some conda builds decide to define the CLANG env variable. This confuses
-      # lit as it tries to use compiler defined in that env variable.
-      unset CLANG
-      make -j${CPU_COUNT} check-clad VERBOSE=1
-  fi
+  # Some conda builds decide to define the CLANG env variable. This confuses
+  # lit as it tries to use compiler defined in that env variable.
+  unset CLANG
+  make -j${CPU_COUNT} check-clad VERBOSE=1
 fi
 
 make install
 
-if [[ "$clangdev" == "18.*" || "$clangdev" == "cling" ]]; then
-  echo "Making xeus-cling based Jupyter kernels"
+if [[ "$clangdev" == "20.*" ]]; then
+  echo "Making xeus-cpp based Jupyter kernels"
   mkdir -p $PREFIX/share/jupyter/kernels/
   cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
   sed -i "s#@PREFIX@#$PREFIX#g" $PREFIX/share/jupyter/kernels/*-Clad/*.json
