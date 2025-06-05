@@ -65,6 +65,10 @@ test:
     - pytest  # [linux and clangdev == "20.*"]
     - xeus-cpp # [linux and clangdev == "20.*"]
     - jupyter_kernel_test # [linux and clangdev == "20.*"]
+    - ld64  # [target_platform == "osx-arm64"]
+    - ld64_osx-arm64 # [target_platform == "osx-arm64"]
+    - cctools  # [target_platform == "osx-arm64"]
+    - cctools_osx-arm64 # [target_platform == "osx-arm64"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
