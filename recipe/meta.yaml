@@ -57,8 +57,8 @@ test:
     - libstdcxx-devel_{{ target_platform }}  # [linux]
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
     - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
-    - {{ compiler('cxx') }}  # [linux]
-    - {{ stdlib("c") }}    # [linux]
+    - {{ compiler('cxx') }}  # [unix]
+    - {{ stdlib("c") }}    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
