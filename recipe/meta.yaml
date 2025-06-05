@@ -54,7 +54,7 @@ test:
     - lit
     - llvm-tools # FileCheck
     - clangdev ={{ clang_ver }}
-    - libstdcxx-devel_{{ target_platform }}  # [linux]
+    - libstdcxx-devel_{{ target_platform }}  # [unix]
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
     - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
     - {{ compiler('cxx') }}  # [unix]

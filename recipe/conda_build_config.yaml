@@ -19,8 +19,8 @@ c_compiler:          # [osx]
 cxx_compiler:        # [osx]
   - clang_bootstrap  # [osx]
 
-cxx_compiler_version:  # [linux]
-  - 10                 # [linux]
+cxx_compiler_version:  # [unix]
+  - 10                 # [unix]
 
 c_stdlib:
   - macosx_deployment_target    # [osx]
