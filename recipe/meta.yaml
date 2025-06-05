@@ -29,8 +29,8 @@ requirements:
     - cmake
     - make   # [unix]
     - ninja  # [win]
-    - {{ compiler('cxx') }}  # [linux]
-    - {{ stdlib("c") }}    # [linux]
+    - {{ compiler('cxx') }}  # [unix]
+    - {{ stdlib("c") }}    # [unix]
     - sed    # [unix]
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
@@ -43,6 +43,7 @@ requirements:
   host:
     - xz
     - zstd
+    - clangdev ={{ clang_ver }}
   run:
   run_constrained:
 
