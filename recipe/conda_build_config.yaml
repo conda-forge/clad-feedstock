@@ -25,5 +25,4 @@ cxx_compiler_version:  # [linux]
 c_stdlib:
   - macosx_deployment_target    # [osx]
 c_stdlib_version:
-  - 10.13                       # [osx and target_platform == "osx-64"]
-  - 11.0                        # [osx and target_platform == "osx-arm64"]
+  - 10.13                       # [osx]
