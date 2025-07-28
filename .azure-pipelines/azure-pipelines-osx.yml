@@ -8,9 +8,6 @@ jobs:
     vmImage: macOS-13
   strategy:
     matrix:
-      osx_64_clangdev10._:
-        CONFIG: osx_64_clangdev10._
-        UPLOAD_PACKAGES: 'True'
       osx_64_clangdev11._:
         CONFIG: osx_64_clangdev11._
         UPLOAD_PACKAGES: 'True'
