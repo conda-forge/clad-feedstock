@@ -20,7 +20,6 @@ build:
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
-    - xz      # [unix]
     - zstd    # [unix]
 
 requirements:
@@ -41,7 +40,6 @@ requirements:
     - libcxx ={{ clang_ver }}  # [osx and clangdev in ("11.*", "12.*", "13.*", "14.*")]
     - libcxx  # [osx and not clangdev in ("11.*", "12.*", "13.*", "14.*")]
   host:
-    - xz
     - zstd
   run:
   run_constrained:
