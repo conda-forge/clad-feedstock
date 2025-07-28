@@ -38,8 +38,8 @@ requirements:
     - clangdev ={{ clang_ver }}
     - llvm-tools # FileCheck
     - lit
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
-    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("11.*", "12.*", "13.*", "14.*")]
+    - libcxx  # [osx and not clangdev in ("11.*", "12.*", "13.*", "14.*")]
   host:
     - xz
     - zstd
@@ -54,8 +54,8 @@ test:
     - llvm-tools # FileCheck
     - clangdev ={{ clang_ver }}
     - libstdcxx-devel_{{ target_platform }}  # [linux]
-    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
-    - libcxx  # [osx and not clangdev in ("10.*", "11.*", "12.*", "13.*", "14.*")]
+    - libcxx ={{ clang_ver }}  # [osx and clangdev in ("11.*", "12.*", "13.*", "14.*")]
+    - libcxx  # [osx and not clangdev in ("11.*", "12.*", "13.*", "14.*")]
     - {{ compiler('cxx') }}  # [linux]
     - {{ stdlib("c") }}    # [linux]
     # LLVM was split into multiple outputs as part of the 8.x update
