@@ -20,8 +20,3 @@ cxx_compiler:        # [osx]
 
 cxx_compiler_version:  # [linux]
   - 10                 # [linux]
-
-c_stdlib:
-  - macosx_deployment_target    # [osx]
-c_stdlib_version:
-  - 10.13                       # [osx]
