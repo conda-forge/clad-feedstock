@@ -7,6 +7,12 @@ set -x
 # Check if shared object is in place.
 test -f $PREFIX/lib/clad${SHLIB_EXT}
 
+# Avoid Bad CPU type in executable error on macOS.
+if [[ "$build_platform" != "$target_platform" ]]; then
+  echo "Skipping tests for cross-compilation (build: $build_platform, target: $target_platform)"
+  exit 0
+fi
+
 # Check installed compiler sanity.
 if [[ "$(uname)" == "Linux"* ]]; then
   if [[ "$clangdev" == "8.*" || "$clangdev" == "9.*" ]]; then
