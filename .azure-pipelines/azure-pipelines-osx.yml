@@ -5,7 +5,7 @@
 jobs:
 - job: osx
   pool:
-    vmImage: macOS-13
+    vmImage: macOS-15
   strategy:
     matrix:
       osx_64_clangdev11._:
@@ -37,6 +37,36 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       osx_64_clangdev20._:
         CONFIG: osx_64_clangdev20._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev11._:
+        CONFIG: osx_arm64_clangdev11._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev12._:
+        CONFIG: osx_arm64_clangdev12._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev13._:
+        CONFIG: osx_arm64_clangdev13._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev14._:
+        CONFIG: osx_arm64_clangdev14._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev15._:
+        CONFIG: osx_arm64_clangdev15._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev16._:
+        CONFIG: osx_arm64_clangdev16._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev17._:
+        CONFIG: osx_arm64_clangdev17._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev18._:
+        CONFIG: osx_arm64_clangdev18._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev19._:
+        CONFIG: osx_arm64_clangdev19._
+        UPLOAD_PACKAGES: 'True'
+      osx_arm64_clangdev20._:
+        CONFIG: osx_arm64_clangdev20._
         UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
