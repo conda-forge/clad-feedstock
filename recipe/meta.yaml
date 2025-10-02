@@ -1,5 +1,5 @@
 {% set name = "clad" %}
-{% set version = "2.0" %}
+{% set version = "2.1" %}
 {% set build_number = 0 %}
 
 {% set clang_ver = (clangdev or "None").split(".")[0] %}
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/vgvassilev/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 46c83cb3294535893ea2f6f64cfdb3225a1191bed74c8f0d5cd89c67330e16f5
+  sha256: cc646c09fcb121e2947263b9f22ad95badb56a5ee06ee45e7601902f46933c78
   folder: source
   patches:
 
