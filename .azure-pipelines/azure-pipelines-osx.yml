@@ -38,6 +38,9 @@ jobs:
       osx_64_clangdev20._:
         CONFIG: osx_64_clangdev20._
         UPLOAD_PACKAGES: 'True'
+      osx_64_clangdev21._:
+        CONFIG: osx_64_clangdev21._
+        UPLOAD_PACKAGES: 'True'
   timeoutInMinutes: 360
   variables: {}
 

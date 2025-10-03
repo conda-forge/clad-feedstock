@@ -50,8 +50,8 @@ fi
 
 
 if [[ "$(uname)" == "Linux"* ]]; then
-  if [[ $clangdev == "20.*" ]]; then
-    # Try running a kernel test for xeus-cpp (in case of 20).
+  if [[ $clangdev == "21.*" ]]; then
+    # Try running a kernel test for xeus-cpp (in case of 21).
     pytest -sv $RECIPE_DIR/jupyter_Clad_kernel_test.py
   fi
 fi
