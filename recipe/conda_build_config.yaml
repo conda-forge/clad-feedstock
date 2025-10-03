@@ -9,6 +9,7 @@ clangdev:
   - 18.*
   - 19.*
   - 20.*
+  - 21.*
 zip_keys:
   -
     - clangdev

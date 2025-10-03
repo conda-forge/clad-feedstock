@@ -42,7 +42,7 @@ fi
 
 make install
 
-if [[ "$clangdev" == "20.*" ]]; then
+if [[ "$clangdev" == "21.*" ]]; then
   echo "Making xeus-cpp based Jupyter kernels"
   mkdir -p $PREFIX/share/jupyter/kernels/
   cp -r $RECIPE_DIR/kernels/* $PREFIX/share/jupyter/kernels/
