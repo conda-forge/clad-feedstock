@@ -59,10 +59,10 @@ test:
     # LLVM was split into multiple outputs as part of the 8.x update
     - llvm
     - llvmdev
-    - nbval  # [linux and clangdev == "21.*"]
-    - pytest  # [linux and clangdev == "21.*"]
-    - xeus-cpp  # [linux and clangdev == "21.*"]
-    - jupyter_kernel_test  # [linux and clangdev == "21.*"]
+    - nbval  # [linux and clangdev == "20.*"]
+    - pytest  # [linux and clangdev == "20.*"]
+    - xeus-cpp  # [linux and clangdev == "20.*"]
+    - jupyter_kernel_test  # [linux and clangdev == "20.*"]
 
   files:
     #- $RECIPE_DIR/jupyter_Clad_kernel_test.py
