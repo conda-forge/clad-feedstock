@@ -2,6 +2,11 @@
 
 set -x
 
+if [[ "$build_platform" != "$target_platform" ]]; then
+  echo "Skipping tests for cross-compilation (build: $build_platform, target: $target_platform)"
+  exit 0
+fi
+
 #export CONDA_BUILD_SYSROOT=$CONDA_PREFIX/$HOST/sysroot
 
 # Check if shared object is in place.
