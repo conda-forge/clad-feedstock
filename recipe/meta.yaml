@@ -1,6 +1,6 @@
 {% set name = "clad" %}
 {% set version = "2.1" %}
-{% set build_number = 1 %}
+{% set build_number = 2 %}
 
 {% set clang_ver = (clangdev or "None").split(".")[0] %}
 {% set clang_ver_string = clang_ver %}
