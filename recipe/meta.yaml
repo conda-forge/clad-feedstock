@@ -1,6 +1,6 @@
 {% set name = "clad" %}
 {% set version = "2.1" %}
-{% set build_number = 3 %}
+{% set build_number = 4 %}
 
 {% set clang_ver = (clangdev or "None").split(".")[0] %}
 {% set clang_ver_string = clang_ver %}
@@ -16,7 +16,7 @@ source:
   patches:
 
 build:
-  skip: true  # [win]
+  skip: true  # [win or (linux and aarch64 and clangdev in ("11.*", "12.*", "13.*", "14.*", "15.*", "16.*","17.*")) or (osx and clangdev in ("11.*", "12.*", "13.*", "14.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
