@@ -5,8 +5,6 @@
 {% set clang_ver = (clangdev or "None").split(".")[0] %}
 {% set clang_ver_string = clang_ver %}
 
-{% set skip_clangdev_versions = ["11", "12", "13", "14", "15", "16", "17"] %}
-
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -18,7 +16,7 @@ source:
   patches:
 
 build:
-  skip: true  # [win or (linux and aarch64 and clangdev in skip_clangdev_versions)]
+  skip: true  # [win or (linux and aarch64 and clangdev in ("11.*", "12.*", "13.*", "14.*", "15.*", "16.*","17.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
