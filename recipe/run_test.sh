@@ -38,10 +38,7 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
-if [[ "$(uname)" == "Darwin"* ]]; then
-  ln -s $PREFIX/lib/libLTO.$clangdev.dylib  $PREFIX/lib/libLTO.dylib
-fi
-clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity -L$CONDA_PREFIX/lib/ test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
