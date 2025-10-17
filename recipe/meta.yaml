@@ -16,7 +16,7 @@ source:
   patches:
 
 build:
-  skip: true  # [win or (linux and aarch64 and clangdev in ("11.*", "12.*", "13.*", "14.*", "15.*", "16.*","17.*")) (osx and clangdev in ("11.*", "12.*", "13.*", "14.*"))]
+  skip: true  # [win or (linux and aarch64 and clangdev in ("11.*", "12.*", "13.*", "14.*", "15.*", "16.*","17.*")) or (osx and clangdev in ("11.*", "12.*", "13.*", "14.*"))]
   number: {{ build_number }}
   string: clang{{ clang_ver_string }}_h{{ PKG_HASH }}_{{ build_number }}
   ignore_run_exports_from:
