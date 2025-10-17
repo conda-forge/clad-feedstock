@@ -19,20 +19,17 @@ fi
 echo "#include <vector>
 int main() {}" | $CONDA_PREFIX/bin/clang $CXXFLAGS -xc++ - -v
 
-if [[ "$target_platform" == "linux-64" ]]; then
-    cmake ${CMAKE_ARGS} \
-	  -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
-	  -DLLVM_EXTERNAL_LIT=`which lit` \
-	  -DCMAKE_INSTALL_PREFIX="$PREFIX" \
-	  $SRC_DIR/source
-else
-cmake ${CMAKE_ARGS} \
-	  -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
-	  -DLLVM_EXTERNAL_LIT=`which lit` \
-	  -DCMAKE_INSTALL_PREFIX="$PREFIX" \
-	  -DCLAD_DISABLE_TESTS=ON \
-	  $SRC_DIR/source
+# FIXME: Although Clad is built as a shared library on Linux arm,
+# the tests do not find the .so in the location it expects
+if [[ "$target_platform" == "linux-aarch64" ]]; then
+  export CMAKE_ARGS="${CMAKE_ARGS} -DCLAD_DISABLE_TESTS=ON"
 fi
+
+cmake ${CMAKE_ARGS} \
+      -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+      -DLLVM_EXTERNAL_LIT=`which lit` \
+      -DCMAKE_INSTALL_PREFIX="$PREFIX" \
+      $SRC_DIR/source
     
 make -j${CPU_COUNT}
 
