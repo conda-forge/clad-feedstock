@@ -13,7 +13,7 @@ clangdev:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '10'
+- '15'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 target_platform:
