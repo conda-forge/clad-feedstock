@@ -52,6 +52,22 @@ jobs:
         CONFIG: linux_64_clangdev21._
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_clangdev18._:
+        CONFIG: linux_aarch64_clangdev18._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_clangdev19._:
+        CONFIG: linux_aarch64_clangdev19._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_clangdev20._:
+        CONFIG: linux_aarch64_clangdev20._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
+      linux_aarch64_clangdev21._:
+        CONFIG: linux_aarch64_clangdev21._
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-x86_64:alma9
   timeoutInMinutes: 360
   variables: {}
 
