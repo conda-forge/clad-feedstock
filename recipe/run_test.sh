@@ -38,7 +38,7 @@ echo "" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
-clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity -lto_library -L$PREFIX/lib/ test.cpp
+clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity -lto_library -L$(llvm-config --libdir) test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
