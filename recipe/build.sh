@@ -19,12 +19,21 @@ fi
 echo "#include <vector>
 int main() {}" | $CONDA_PREFIX/bin/clang $CXXFLAGS -xc++ - -v
 
+if [[ "$target_platform" == "linux-64" ]]; then
+    cmake ${CMAKE_ARGS} \
+	  -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+	  -DLLVM_EXTERNAL_LIT=`which lit` \
+	  -DCMAKE_INSTALL_PREFIX="$PREFIX" \
+	  $SRC_DIR/source
+else
 cmake ${CMAKE_ARGS} \
-      -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
-      -DLLVM_EXTERNAL_LIT=`which lit` \
-      -DCMAKE_INSTALL_PREFIX="$PREFIX" \
-      $SRC_DIR/source
-
+	  -DCMAKE_SYSROOT=$CONDA_BUILD_SYSROOT \
+	  -DLLVM_EXTERNAL_LIT=`which lit` \
+	  -DCMAKE_INSTALL_PREFIX="$PREFIX" \
+	  -DCLAD_DISABLE_TESTS=ON \
+	  $SRC_DIR/source
+fi
+    
 make -j${CPU_COUNT}
 
 
