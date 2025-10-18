@@ -42,7 +42,7 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   # On OSX x86 clang++ automatically tries to link to libLTO.${clangdev}${SHLIB_EXT}
   # and then errors saying the only thing it will accept is libLTO.dylib
   cd $PREFIX/lib/
-  ln -sf libLTO${SHLIB_EXT}  libLTO.${clangdev}${SHLIB_EXT}
+  ln -sf libLTO.${clangdev}${SHLIB_EXT} libLTO${SHLIB_EXT} 
   cd -
 fi
 clang++ -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
