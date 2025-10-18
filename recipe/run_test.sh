@@ -39,7 +39,6 @@ echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 
 # Check if we can process a simple program.
 find $PREFIX -iname "*lto*"
-ln -s $PREFIX/lib/libLTO.dylib
 rm $PREFIX/lib/libLTO.$clangdev.dylib
 clang++ -flto -v test.cpp $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
