@@ -45,7 +45,7 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   ln -sf libLTO${SHLIB_EXT}  libLTO.${clangdev}${SHLIB_EXT}
   cd -
 fi
-clang++ $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+clang++ -v $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
