@@ -43,7 +43,7 @@ if [[ "$(uname)" == "Darwin"* ]]; then
   # and then errors saying the only thing it will accept is libLTO.dylib
   rm $PREFIX/lib/libLTO.${clangdev}${SHLIB_EXT}
 fi
-clang++ -v -Xlinker -lto_library -Xlinker $PREFIX/libLTO${SHLIB_EXT} $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+clang++ -v -Xlinker -lto_library -Xlinker $PREFIX/lib/libLTO${SHLIB_EXT} $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
