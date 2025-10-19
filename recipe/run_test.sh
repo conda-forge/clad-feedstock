@@ -41,9 +41,9 @@ echo "#include <vector>" | clang $CXXFLAGS -fsyntax-only -xc++ - -v
 if [[ "$(uname)" == "Darwin"* ]]; then
   # On OSX x86 clang++ automatically tries to link to libLTO.${clangdev}${SHLIB_EXT}
   # and then errors saying the only thing it will accept is libLTO.dylib
-  rm $PREFI/lib/libLTO.${clangdev}${SHLIB_EXT}
+  rm $PREFIX/lib/libLTO.${clangdev}${SHLIB_EXT}
 fi
-clang++ -v -Xlinker -lto_library -Xlinker $PREFIX/libLTO.dylib $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
+clang++ -v -Xlinker -lto_library -Xlinker $PREFIX/libLTO${SHLIB_EXT} $CXXFLAGS -xc++ -I$PREFIX/include -fplugin=$PREFIX/lib/clad${SHLIB_EXT} -osanity test.cpp
 ./sanity
 
 # Make sure we do not link anything llvm or clang related
