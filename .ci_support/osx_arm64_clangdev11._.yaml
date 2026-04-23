@@ -12,7 +12,5 @@ macos_machine:
 - arm64-apple-darwin20.0.0
 target_platform:
 - osx-arm64
-xz:
-- '5'
 zstd:
 - '1.5'
